@@ -17,8 +17,6 @@ public class SpringJpaPostgreSqlApplication implements CommandLineRunner{
 		SpringApplication.run(SpringJpaPostgreSqlApplication.class, args);
 	}
         
-        
-        
 	@Override
 	public void run(String... arg0) throws Exception {
 		// clear all record if existed before do the tutorial with new data 

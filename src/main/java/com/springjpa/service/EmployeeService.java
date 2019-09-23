@@ -19,8 +19,13 @@ import org.springframework.stereotype.Service;
 @Service
 public class EmployeeService implements IEmployeeService {
     
+    
+    private final EmployeeRepository repository;
+    
     @Autowired
-    private EmployeeRepository repository;
+    public EmployeeService(EmployeeRepository repository) {
+        this.repository = repository;
+    }
     
     @Override
     public List<Employee> findAll() {

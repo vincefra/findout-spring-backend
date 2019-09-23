@@ -7,13 +7,12 @@ package com.springjpa.service;
 
 import com.springjpa.model.Employee;
 import java.util.List;
-import org.springframework.stereotype.Repository;
 
 /**
  *
  * @author work
  */
 public interface IEmployeeService {
-    List<Employee> findAll();
-    Employee findById(long id);
+    public List<Employee> findAll();
+    public Employee findById(long id);
 }

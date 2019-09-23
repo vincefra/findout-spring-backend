@@ -20,15 +20,14 @@ public class WebController {
     ResponseEntity<List<Employee>> getAllEmployees() {
         return ResponseEntity.ok(employeeService.findAll());
     }
-    
+
     @RequestMapping("/findbyid")
     ResponseEntity<Employee> getEmployee(@RequestParam("id") long id) {
-        
-        Employee e = employeeService.findById(id);
-        
-        return ResponseEntity.ok(e);      
-    }
 
+        Employee e = employeeService.findById(id);
+
+        return ResponseEntity.ok(e);
+    }
 
     /*
     @RequestMapping("/save")

@@ -13,10 +13,6 @@ import javax.persistence.Table;
 @Table(name = "employee")
 public class Employee implements Serializable {
 
-    public void setBirthyear(int birthyear) {
-        this.birthyear = birthyear;
-    }
-
     private static final long serialVersionUID = -3009157732242241606L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -43,6 +39,10 @@ public class Employee implements Serializable {
     @Override
     public String toString() {
         return String.format("EmployeeId=%d, Name='%s', Lastname='%s'], Birthyear='%s']", id, firstname, lastname, birthyear);
+    }
+    
+    public void setBirthyear(int birthyear) {
+        this.birthyear = birthyear;
     }
 
     public long getId() {
