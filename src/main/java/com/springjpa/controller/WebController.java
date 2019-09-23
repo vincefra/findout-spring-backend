@@ -1,21 +1,27 @@
 package com.springjpa.controller;
 
-import java.util.Arrays;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.springjpa.model.Employee;
-import com.springjpa.repo.EmployeeRepository;
+import com.springjpa.service.IEmployeeService;
+import java.util.List;
+import org.springframework.http.ResponseEntity;
 
 @RestController
 public class WebController {
 
     @Autowired
-    EmployeeRepository repository;
+    private IEmployeeService employeeService;
 
+    @RequestMapping("/findall")
+    ResponseEntity<List<Employee>> getAllEmployees() {
+        return ResponseEntity.ok(employeeService.findAll());
+    }
+
+
+    /*
     @RequestMapping("/save")
     public String process() {
         // save a single Employee
@@ -47,13 +53,13 @@ public class WebController {
     }
 
     @RequestMapping("/findbylastname")
-    public String fetchDataByLastName(@RequestParam("lastname") String lastName) {
+    public String fetchDataByLastName(@RequestParam("lastname") String lastname) {
         String result = "";
 
-        for (Employee cust : repository.findByLastName(lastName)) {
+        for (Employee cust : repository.findByLastname(lastname)) {
             result += cust.toString() + "<br>";
         }
 
         return result;
-    }
+    }*/
 }
