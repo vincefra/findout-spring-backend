@@ -8,6 +8,7 @@ import com.springjpa.model.Employee;
 import com.springjpa.service.IEmployeeService;
 import java.util.List;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @RestController
 public class WebController {
@@ -18,6 +19,14 @@ public class WebController {
     @RequestMapping("/findall")
     ResponseEntity<List<Employee>> getAllEmployees() {
         return ResponseEntity.ok(employeeService.findAll());
+    }
+    
+    @RequestMapping("/findbyid")
+    ResponseEntity<Employee> getEmployee(@RequestParam("id") long id) {
+        
+        Employee e = employeeService.findById(id);
+        
+        return ResponseEntity.ok(e);      
     }
 
 
