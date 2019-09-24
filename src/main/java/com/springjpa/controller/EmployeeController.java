@@ -11,7 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @RestController
-public class WebController {
+public class EmployeeController {
 
     @Autowired
     private IEmployeeService employeeService;

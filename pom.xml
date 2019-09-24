@@ -10,7 +10,7 @@
 
 
     <name>SpringJPA-PostgreSQL</name>
-    <description>Demo project for Spring Boot JPA - PostgreSQL</description>
+    <description>Backend Server for infographics</description>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
