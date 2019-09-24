@@ -1,0 +1,100 @@
+spring:
+    profiles:
+        active: dockerdebug
+
+
+--- 
+
+server:
+    port: 7878
+    servlet:
+      context-path: /api/
+
+---
+
+spring:
+    profiles: local 
+    
+    driverClassName:
+        org.postgresql.Driver
+    datasource.url: 
+        jdbc:postgresql://localhost:5432/findout-migrate
+    datasource:
+        username: postgres
+        password: 123456
+    jpa:
+        generate-ddl:true
+    database-platform:
+        org.hibernate.dialect.PostgreSQLDialect
+        
+    flyway:
+      url: jdbc:postgresql://localhost:5432/findout-migrate
+
+---
+
+spring:
+    profiles: develop 
+    
+    driverClassName:
+        org.postgresql.Driver
+    datasource.url: 
+        jdbc:postgresql://localhost:5432/findout-migrate
+    datasource:
+        username: postgres
+        password: 123456
+    jpa:
+        generate-ddl:true
+    database-platform:
+        org.hibernate.dialect.PostgreSQLDialect
+        
+    flyway:
+      url: jdbc:postgresql://localhost:5432/findout-migrate
+      
+---
+
+spring:
+    profiles: develop 
+    
+    driverClassName:
+        org.postgresql.Driver
+    datasource.url: 
+        jdbc:postgresql://postgres:5432/findout-migrate
+    datasource:
+        username: postgres
+        password: 123456
+    jpa:
+        generate-ddl:true
+    database-platform:
+        org.hibernate.dialect.PostgreSQLDialect
+        
+    flyway:
+      url: jdbc:postgresql://localhost:5432/findout-migrate
+
+
+---
+
+spring:
+    profiles: dockerdebug
+    
+    driverClassName:
+        org.postgresql.Driver
+    
+    datasource.url: 
+        jdbc:postgresql://postgres:5432/postgres
+    datasource:
+        username: postgres
+        password: password
+    jpa:
+        generate-ddl:true
+    database-platform:
+        org.hibernate.dialect.PostgreSQLDialect
+   
+flyway:
+    enabled: false
+#      url: jdbc:postgresql://localhost:5432/findout-migrate
+        
+        
+        
+
+        
+
