@@ -11,11 +11,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-/**
- *
- * @author work
- */
-
 @Service
 public class EmployeeService implements IEmployeeService {
     

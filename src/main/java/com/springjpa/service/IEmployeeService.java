@@ -8,10 +8,6 @@ package com.springjpa.service;
 import com.springjpa.model.Employee;
 import java.util.List;
 
-/**
- *
- * @author work
- */
 public interface IEmployeeService {
     public List<Employee> findAll();
     public Employee findById(long id);
