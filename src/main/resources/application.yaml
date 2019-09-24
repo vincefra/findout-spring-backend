@@ -12,7 +12,7 @@ spring:
             hibernate:
                 jdbc:
                     lob:
-                        non_contextual_creation=true:
+                        non_contextual_creation: true
 
 server:
     port: 7878
