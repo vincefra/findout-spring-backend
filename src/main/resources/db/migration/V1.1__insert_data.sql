@@ -12,22 +12,13 @@
  Target Server Version : 100010
  File Encoding         : 65001
 
- Date: 23/09/2019 14:56:23
+ Date: 24/09/2019 11:44:05
 */
 
 
 -- ----------------------------
 -- Table structure for customer
 -- ----------------------------
-DROP TABLE IF EXISTS "public"."customer";
-CREATE TABLE "public"."customer" (
-  "id" int4 NOT NULL,
-  "name" varchar(100) COLLATE "pg_catalog"."default",
-  "category" varchar(100) COLLATE "pg_catalog"."default",
-  "description" varchar(100) COLLATE "pg_catalog"."default"
-)
-;
-ALTER TABLE "public"."customer" OWNER TO "postgres";
 
 -- ----------------------------
 -- Records of customer
@@ -95,16 +86,6 @@ INSERT INTO "public"."customer" VALUES (59, 'SonyEricsson', 'Telecommunication',
 INSERT INTO "public"."customer" VALUES (60, 'Electrolux', 'Manufacturer', '');
 COMMIT;
 
--- ----------------------------
--- Table structure for customerlocation
--- ----------------------------
-DROP TABLE IF EXISTS "public"."customerlocation";
-CREATE TABLE "public"."customerlocation" (
-  "id" int4 NOT NULL,
-  "locationId" int4 NOT NULL
-)
-;
-ALTER TABLE "public"."customerlocation" OWNER TO "postgres";
 
 -- ----------------------------
 -- Records of customerlocation
@@ -171,21 +152,6 @@ INSERT INTO "public"."customerlocation" VALUES (60, 1);
 INSERT INTO "public"."customerlocation" VALUES (52, 6);
 INSERT INTO "public"."customerlocation" VALUES (6, 6);
 COMMIT;
-
--- ----------------------------
--- Table structure for employee
--- ----------------------------
-DROP TABLE IF EXISTS "public"."employee";
-CREATE TABLE "public"."employee" (
-  "id" int4 NOT NULL,
-  "name" varchar(100) COLLATE "pg_catalog"."default",
-  "lastname" varchar(100) COLLATE "pg_catalog"."default",
-  "type" varchar(100) COLLATE "pg_catalog"."default",
-  "birthyear" int4,
-  "languages" varchar COLLATE "pg_catalog"."default"
-)
-;
-ALTER TABLE "public"."employee" OWNER TO "postgres";
 
 -- ----------------------------
 -- Records of employee
@@ -269,16 +235,6 @@ INSERT INTO "public"."employee" VALUES (30, 'Anders', 'Forsell', 'Konsulter', 19
 COMMIT;
 
 -- ----------------------------
--- Table structure for employeeoffice
--- ----------------------------
-DROP TABLE IF EXISTS "public"."employeeoffice";
-CREATE TABLE "public"."employeeoffice" (
-  "id" int4 NOT NULL DEFAULT nextval('"EmployeeOffice_id_seq"'::regclass),
-  "officeId" int4
-)
-;
-ALTER TABLE "public"."employeeoffice" OWNER TO "postgres";
-
 -- ----------------------------
 -- Records of employeeoffice
 -- ----------------------------
@@ -361,17 +317,6 @@ INSERT INTO "public"."employeeoffice" VALUES (73, 1);
 COMMIT;
 
 -- ----------------------------
--- Table structure for employeetech
--- ----------------------------
-DROP TABLE IF EXISTS "public"."employeetech";
-CREATE TABLE "public"."employeetech" (
-  "employeeId" int4,
-  "tech" varchar COLLATE "pg_catalog"."default",
-  "technologyId" int4
-)
-;
-ALTER TABLE "public"."employeetech" OWNER TO "postgres";
-
 -- ----------------------------
 -- Records of employeetech
 -- ----------------------------
@@ -2170,17 +2115,6 @@ INSERT INTO "public"."employeetech" VALUES (47, 'Ant', 35);
 INSERT INTO "public"."employeetech" VALUES (19, 'Ant', 35);
 COMMIT;
 
--- ----------------------------
--- Table structure for employeetime
--- ----------------------------
-DROP TABLE IF EXISTS "public"."employeetime";
-CREATE TABLE "public"."employeetime" (
-  "employeeId" int4 NOT NULL,
-  "year_in" varchar COLLATE "pg_catalog"."default" NOT NULL,
-  "year_out" varchar COLLATE "pg_catalog"."default" NOT NULL
-)
-;
-ALTER TABLE "public"."employeetime" OWNER TO "postgres";
 
 -- ----------------------------
 -- Records of employeetime
@@ -2263,16 +2197,6 @@ INSERT INTO "public"."employeetime" VALUES (27, '2009', '2012');
 INSERT INTO "public"."employeetime" VALUES (30, '2010', '2016');
 COMMIT;
 
--- ----------------------------
--- Table structure for location
--- ----------------------------
-DROP TABLE IF EXISTS "public"."location";
-CREATE TABLE "public"."location" (
-  "id" int4 NOT NULL,
-  "location" varchar(255) COLLATE "pg_catalog"."default"
-)
-;
-ALTER TABLE "public"."location" OWNER TO "postgres";
 
 -- ----------------------------
 -- Records of location
@@ -2289,17 +2213,6 @@ INSERT INTO "public"."location" VALUES (8, 'Canada');
 COMMIT;
 
 -- ----------------------------
--- Table structure for office
--- ----------------------------
-DROP TABLE IF EXISTS "public"."office";
-CREATE TABLE "public"."office" (
-  "id" int4 NOT NULL,
-  "office" varchar(255) COLLATE "pg_catalog"."default"
-)
-;
-ALTER TABLE "public"."office" OWNER TO "postgres";
-
--- ----------------------------
 -- Records of office
 -- ----------------------------
 BEGIN;
@@ -2307,20 +2220,6 @@ INSERT INTO "public"."office" VALUES (1, 'Kista');
 INSERT INTO "public"."office" VALUES (2, 'Linköping');
 COMMIT;
 
--- ----------------------------
--- Table structure for project
--- ----------------------------
-DROP TABLE IF EXISTS "public"."project";
-CREATE TABLE "public"."project" (
-  "id" int4 NOT NULL,
-  "project" varchar COLLATE "pg_catalog"."default",
-  "project_type" varchar COLLATE "pg_catalog"."default",
-  "start_dates" varchar COLLATE "pg_catalog"."default",
-  "end_dates" varchar COLLATE "pg_catalog"."default",
-  "description" varchar COLLATE "pg_catalog"."default"
-)
-;
-ALTER TABLE "public"."project" OWNER TO "postgres";
 
 -- ----------------------------
 -- Records of project
@@ -2448,17 +2347,6 @@ INSERT INTO "public"."project" VALUES (95, 'Ericsson', '', '2009-02-01', '2010-0
 INSERT INTO "public"."project" VALUES (97, 'Nordea (Workson)', '', '2010-04-01', '2011-06-31', '');
 COMMIT;
 
--- ----------------------------
--- Table structure for projectcustomer
--- ----------------------------
-DROP TABLE IF EXISTS "public"."projectcustomer";
-CREATE TABLE "public"."projectcustomer" (
-  "id" int4,
-  "customerId" int4,
-  "customer" varchar COLLATE "pg_catalog"."default"
-)
-;
-ALTER TABLE "public"."projectcustomer" OWNER TO "postgres";
 
 -- ----------------------------
 -- Records of projectcustomer
@@ -2586,16 +2474,6 @@ INSERT INTO "public"."projectcustomer" VALUES (95, 3, 'Ericsson');
 INSERT INTO "public"."projectcustomer" VALUES (97, 12, 'Nordea');
 COMMIT;
 
--- ----------------------------
--- Table structure for projectechnology
--- ----------------------------
-DROP TABLE IF EXISTS "public"."projectechnology";
-CREATE TABLE "public"."projectechnology" (
-  "projectId" int4 NOT NULL,
-  "technologyId" int4 NOT NULL
-)
-;
-ALTER TABLE "public"."projectechnology" OWNER TO "postgres";
 
 -- ----------------------------
 -- Records of projectechnology
@@ -3351,16 +3229,6 @@ INSERT INTO "public"."projectechnology" VALUES (48, 507);
 INSERT INTO "public"."projectechnology" VALUES (57, 507);
 COMMIT;
 
--- ----------------------------
--- Table structure for projectemployee
--- ----------------------------
-DROP TABLE IF EXISTS "public"."projectemployee";
-CREATE TABLE "public"."projectemployee" (
-  "projectId" int4 NOT NULL,
-  "employeeId" int4 NOT NULL
-)
-;
-ALTER TABLE "public"."projectemployee" OWNER TO "postgres";
 
 -- ----------------------------
 -- Records of projectemployee
@@ -3677,18 +3545,6 @@ INSERT INTO "public"."projectemployee" VALUES (97, 26);
 COMMIT;
 
 -- ----------------------------
--- Table structure for projecttime
--- ----------------------------
-DROP TABLE IF EXISTS "public"."projecttime";
-CREATE TABLE "public"."projecttime" (
-  "id" int4,
-  "start_dates" varchar COLLATE "pg_catalog"."default",
-  "end_dates" varchar COLLATE "pg_catalog"."default"
-)
-;
-ALTER TABLE "public"."projecttime" OWNER TO "postgres";
-
--- ----------------------------
 -- Records of projecttime
 -- ----------------------------
 BEGIN;
@@ -3825,16 +3681,6 @@ INSERT INTO "public"."projecttime" VALUES (46, '2011-01-01', ' 2011-03-31');
 INSERT INTO "public"."projecttime" VALUES (55, '2017-04-01', ' 2017-07-31');
 COMMIT;
 
--- ----------------------------
--- Table structure for technology
--- ----------------------------
-DROP TABLE IF EXISTS "public"."technology";
-CREATE TABLE "public"."technology" (
-  "id" int4 NOT NULL DEFAULT nextval('technology_id_seq'::regclass),
-  "technology" varchar COLLATE "pg_catalog"."default"
-)
-;
-ALTER TABLE "public"."technology" OWNER TO "postgres";
 
 -- ----------------------------
 -- Records of technology
@@ -4733,58 +4579,3 @@ INSERT INTO "public"."technology" VALUES (639, 'TTD');
 INSERT INTO "public"."technology" VALUES (640, 'TwitterBootstrap');
 INSERT INTO "public"."technology" VALUES (641, 'Typescript');
 COMMIT;
-
--- ----------------------------
--- Primary Key structure for table customer
--- ----------------------------
-ALTER TABLE "public"."customer" ADD CONSTRAINT "customer_pkey" PRIMARY KEY ("id");
-
--- ----------------------------
--- Primary Key structure for table customerlocation
--- ----------------------------
-ALTER TABLE "public"."customerlocation" ADD CONSTRAINT "CustomerLocation_pkey" PRIMARY KEY ("id", "locationId");
-
--- ----------------------------
--- Primary Key structure for table employee
--- ----------------------------
-ALTER TABLE "public"."employee" ADD CONSTRAINT "employee_pkey" PRIMARY KEY ("id");
-
--- ----------------------------
--- Primary Key structure for table employeeoffice
--- ----------------------------
-ALTER TABLE "public"."employeeoffice" ADD CONSTRAINT "EmployeeOffice_pkey" PRIMARY KEY ("id");
-
--- ----------------------------
--- Primary Key structure for table employeetime
--- ----------------------------
-ALTER TABLE "public"."employeetime" ADD CONSTRAINT "EmployeeTime_pkey" PRIMARY KEY ("year_in", "employeeId", "year_out");
-
--- ----------------------------
--- Primary Key structure for table location
--- ----------------------------
-ALTER TABLE "public"."location" ADD CONSTRAINT "Location_pkey" PRIMARY KEY ("id");
-
--- ----------------------------
--- Primary Key structure for table office
--- ----------------------------
-ALTER TABLE "public"."office" ADD CONSTRAINT "Office_pkey" PRIMARY KEY ("id");
-
--- ----------------------------
--- Primary Key structure for table project
--- ----------------------------
-ALTER TABLE "public"."project" ADD CONSTRAINT "projects_pkey" PRIMARY KEY ("id");
-
--- ----------------------------
--- Primary Key structure for table projectechnology
--- ----------------------------
-ALTER TABLE "public"."projectechnology" ADD CONSTRAINT "ProjectTechnology_pkey" PRIMARY KEY ("projectId", "technologyId");
-
--- ----------------------------
--- Primary Key structure for table projectemployee
--- ----------------------------
-ALTER TABLE "public"."projectemployee" ADD CONSTRAINT "ProjectEmployee_pkey" PRIMARY KEY ("projectId", "employeeId");
-
--- ----------------------------
--- Primary Key structure for table technology
--- ----------------------------
-ALTER TABLE "public"."technology" ADD CONSTRAINT "technology_pkey" PRIMARY KEY ("id");
