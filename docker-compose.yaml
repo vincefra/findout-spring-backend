@@ -11,7 +11,7 @@ services:
       POSTGRES_PASSWORD: "password"
       POSTGRES_DB: "postgres"
     network_mode: "bridge"
-    command: postgres -c 'max_connections=100'
+    #command: postgres -c 'max_connections=100'
 
 
   adminer:

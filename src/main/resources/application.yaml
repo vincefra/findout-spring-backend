@@ -1,7 +1,6 @@
 spring:
     profiles:
-        active: dockerdebug
-
+        active: local
 
 --- 
 
@@ -13,22 +12,22 @@ server:
 ---
 
 spring:
-    profiles: local 
+    profiles: local-dockerdb
     
     driverClassName:
         org.postgresql.Driver
     datasource.url: 
-        jdbc:postgresql://localhost:5432/findout-migrate
+        jdbc:postgresql://localhost:5438/postgres
     datasource:
         username: postgres
-        password: 123456
+        password: password
     jpa:
         generate-ddl:true
     database-platform:
         org.hibernate.dialect.PostgreSQLDialect
         
-    flyway:
-      url: jdbc:postgresql://localhost:5432/findout-migrate
+#    flyway:
+#      url: jdbc:postgresql://localhost:5432/findout-migrate
 
 ---
 
@@ -46,30 +45,9 @@ spring:
         generate-ddl:true
     database-platform:
         org.hibernate.dialect.PostgreSQLDialect
-        
-    flyway:
-      url: jdbc:postgresql://localhost:5432/findout-migrate
-      
----
-
-spring:
-    profiles: develop 
-    
-    driverClassName:
-        org.postgresql.Driver
-    datasource.url: 
-        jdbc:postgresql://postgres:5432/findout-migrate
-    datasource:
-        username: postgres
-        password: 123456
-    jpa:
-        generate-ddl:true
-    database-platform:
-        org.hibernate.dialect.PostgreSQLDialect
-        
-    flyway:
-      url: jdbc:postgresql://localhost:5432/findout-migrate
-
+#        
+#    flyway:
+#      url: jdbc:postgresql://localhost:5432/findout-migrate
 
 ---
 
@@ -89,11 +67,11 @@ spring:
     database-platform:
         org.hibernate.dialect.PostgreSQLDialect
    
-    flyway:
-        #enabled: false
-      url: jdbc:postgresql://localhost:5432/findout-migrate
-        
-        
+#    flyway:
+#        #enabled: false
+#      url: jdbc:postgresql://localhost:5432/findout-migrate
+#        
+#        
         
 
         

@@ -21,7 +21,7 @@
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."customer";
 CREATE TABLE "public"."customer" (
-  "id" int4 NOT NULL,
+  "id" SERIAL PRIMARY KEY,
   "name" varchar(100) COLLATE "pg_catalog"."default",
   "category" varchar(100) COLLATE "pg_catalog"."default",
   "description" varchar(100) COLLATE "pg_catalog"."default"
@@ -45,7 +45,7 @@ ALTER TABLE "public"."customerlocation" OWNER TO "postgres";
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."employee";
 CREATE TABLE "public"."employee" (
-  "id" int4 NOT NULL,
+  "id" SERIAL PRIMARY KEY,
   "name" varchar(100) COLLATE "pg_catalog"."default",
   "lastname" varchar(100) COLLATE "pg_catalog"."default",
   "type" varchar(100) COLLATE "pg_catalog"."default",
@@ -60,7 +60,7 @@ ALTER TABLE "public"."employee" OWNER TO "postgres";
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."employeeoffice";
 CREATE TABLE "public"."employeeoffice" (
-  "id" int4 NOT NULL DEFAULT nextval('"EmployeeOffice_id_seq"'::regclass),
+  "id" SERIAL PRIMARY KEY,
   "officeId" int4
 )
 ;
@@ -95,7 +95,7 @@ ALTER TABLE "public"."employeetime" OWNER TO "postgres";
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."location";
 CREATE TABLE "public"."location" (
-  "id" int4 NOT NULL,
+  "id" SERIAL PRIMARY KEY,
   "location" varchar(255) COLLATE "pg_catalog"."default"
 )
 ;
@@ -106,7 +106,7 @@ ALTER TABLE "public"."location" OWNER TO "postgres";
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."office";
 CREATE TABLE "public"."office" (
-  "id" int4 NOT NULL,
+  "id" SERIAL PRIMARY KEY,
   "office" varchar(255) COLLATE "pg_catalog"."default"
 )
 ;
@@ -117,7 +117,7 @@ ALTER TABLE "public"."office" OWNER TO "postgres";
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."project";
 CREATE TABLE "public"."project" (
-  "id" int4 NOT NULL,
+  "id" SERIAL PRIMARY KEY,
   "project" varchar COLLATE "pg_catalog"."default",
   "project_type" varchar COLLATE "pg_catalog"."default",
   "start_dates" varchar COLLATE "pg_catalog"."default",
@@ -132,7 +132,7 @@ ALTER TABLE "public"."project" OWNER TO "postgres";
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."projectcustomer";
 CREATE TABLE "public"."projectcustomer" (
-  "id" int4,
+  "id" SERIAL PRIMARY KEY,
   "customerId" int4,
   "customer" varchar COLLATE "pg_catalog"."default"
 )
@@ -166,7 +166,7 @@ ALTER TABLE "public"."projectemployee" OWNER TO "postgres";
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."projecttime";
 CREATE TABLE "public"."projecttime" (
-  "id" int4,
+  "id" int4 not null,
   "start_dates" varchar COLLATE "pg_catalog"."default",
   "end_dates" varchar COLLATE "pg_catalog"."default"
 )
@@ -178,12 +178,13 @@ ALTER TABLE "public"."projecttime" OWNER TO "postgres";
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."technology";
 CREATE TABLE "public"."technology" (
-  "id" int4 NOT NULL DEFAULT nextval('technology_id_seq'::regclass),
+  "id" SERIAL PRIMARY KEY,
   "technology" varchar COLLATE "pg_catalog"."default"
 )
 ;
 ALTER TABLE "public"."technology" OWNER TO "postgres";
 
+/*
 -- ----------------------------
 -- Primary Key structure for table customer
 -- ----------------------------
@@ -192,7 +193,7 @@ ALTER TABLE "public"."customer" ADD CONSTRAINT "customer_pkey" PRIMARY KEY ("id"
 -- ----------------------------
 -- Primary Key structure for table customerlocation
 -- ----------------------------
-ALTER TABLE "public"."customerlocation" ADD CONSTRAINT "CustomerLocation_pkey" PRIMARY KEY ("id", "locationId");
+ALTER TABLE "public"."customerlocation" ADD CONSTRAINT "customerlocation_pkey" PRIMARY KEY ("id", "locationId");
 
 -- ----------------------------
 -- Primary Key structure for table employee
@@ -202,22 +203,22 @@ ALTER TABLE "public"."employee" ADD CONSTRAINT "employee_pkey" PRIMARY KEY ("id"
 -- ----------------------------
 -- Primary Key structure for table employeeoffice
 -- ----------------------------
-ALTER TABLE "public"."employeeoffice" ADD CONSTRAINT "EmployeeOffice_pkey" PRIMARY KEY ("id");
+ALTER TABLE "public"."employeeoffice" ADD CONSTRAINT "employeeoffice_pkey" PRIMARY KEY ("id");
 
 -- ----------------------------
 -- Primary Key structure for table employeetime
 -- ----------------------------
-ALTER TABLE "public"."employeetime" ADD CONSTRAINT "EmployeeTime_pkey" PRIMARY KEY ("year_in", "employeeId", "year_out");
+ALTER TABLE "public"."employeetime" ADD CONSTRAINT "employeetime_pkey" PRIMARY KEY ("year_in", "employeeId", "year_out");
 
 -- ----------------------------
 -- Primary Key structure for table location
 -- ----------------------------
-ALTER TABLE "public"."location" ADD CONSTRAINT "Location_pkey" PRIMARY KEY ("id");
+ALTER TABLE "public"."location" ADD CONSTRAINT "location_pkey" PRIMARY KEY ("id");
 
 -- ----------------------------
 -- Primary Key structure for table office
 -- ----------------------------
-ALTER TABLE "public"."office" ADD CONSTRAINT "Office_pkey" PRIMARY KEY ("id");
+ALTER TABLE "public"."office" ADD CONSTRAINT "office_pkey" PRIMARY KEY ("id");
 
 -- ----------------------------
 -- Primary Key structure for table project
@@ -227,14 +228,14 @@ ALTER TABLE "public"."project" ADD CONSTRAINT "projects_pkey" PRIMARY KEY ("id")
 -- ----------------------------
 -- Primary Key structure for table projectechnology
 -- ----------------------------
-ALTER TABLE "public"."projectechnology" ADD CONSTRAINT "ProjectTechnology_pkey" PRIMARY KEY ("projectId", "technologyId");
+ALTER TABLE "public"."projectechnology" ADD CONSTRAINT "projectechnology_pkey" PRIMARY KEY ("projectId", "technologyId");
 
 -- ----------------------------
 -- Primary Key structure for table projectemployee
 -- ----------------------------
-ALTER TABLE "public"."projectemployee" ADD CONSTRAINT "ProjectEmployee_pkey" PRIMARY KEY ("projectId", "employeeId");
+ALTER TABLE "public"."projectemployee" ADD CONSTRAINT "projectemployee_pkey" PRIMARY KEY ("projectId", "employeeId");
 
 -- ----------------------------
 -- Primary Key structure for table technology
 -- ----------------------------
-ALTER TABLE "public"."technology" ADD CONSTRAINT "technology_pkey" PRIMARY KEY ("id");
+ALTER TABLE "public"."technology" ADD CONSTRAINT "technology_pkey" PRIMARY KEY ("id");*/
