@@ -35,7 +35,7 @@ public class EmployeeService implements IEmployeeService {
     
     @Override
     public Employee findById(long id) {
-        return (Employee)repository.findOne(id);
+        return (Employee)repository.findById(id).get();
     }
     
 }
