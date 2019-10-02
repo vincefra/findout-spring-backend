@@ -26,6 +26,9 @@ public class Employee implements Serializable {
 
     @Column(name = "birthyear")
     private int birthyear;
+    
+    @Column(name = "privacy")
+    private int privacy;
 
     protected Employee() {
     }
@@ -71,5 +74,13 @@ public class Employee implements Serializable {
 
     public int getBirthyear() {
         return birthyear;
+    }
+
+    public int getPrivacy() {
+        return privacy;
+    }
+
+    public void setPrivacy(int privacy) {
+        this.privacy = privacy;
     }
 }

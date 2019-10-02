@@ -1,6 +1,6 @@
 spring:
     profiles:
-        active: local
+        active: develop
 
     database-platform:
         org.hibernate.dialect.PostgreSQLDialect
@@ -51,6 +51,9 @@ spring:
     datasource:
         username: postgres
         password: 123456
+
+    flyway: 
+        enabled: false
 
 
 
