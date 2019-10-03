@@ -30,7 +30,7 @@ public class SpringJpaPostgreSqlApplicationTests {
     @Test
     public void contextLoads() {
         //Employee E = repository.findOne((long)1);
-        TestCase.assertEquals("peter", employeeService.findById(1).getFirstname().toLowerCase());
+        TestCase.assertEquals("peter", employeeService.findById(1).getFirstName().toLowerCase());
         //TestCase.assertEquals(1, repository.findOne((long)1));
     }
 

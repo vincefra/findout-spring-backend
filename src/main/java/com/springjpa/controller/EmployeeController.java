@@ -1,9 +1,7 @@
 package com.springjpa.controller;
-
-import com.springjpa.model.Employee;
-import com.springjpa.model.Project.Project;
+import com.springjpa.model.Employee.Employee;
+import com.springjpa.model.Employee.EmployeeDataMap;
 import com.springjpa.service.IEmployeeService;
-import com.springjpa.service.IProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,17 +12,14 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
+@RequestMapping("/employee")
 public class EmployeeController {
 
     @Autowired
     private IEmployeeService employeeService;
-    
-    @Autowired
-    private IProjectService projectService;
-
 
     @RequestMapping("/findall")
-    ResponseEntity<List<Employee>> getAllEmployees() {
+    ResponseEntity<List<EmployeeDataMap>> getAllEmployees() {
         return ResponseEntity.ok(employeeService.findAll());
     }
 
@@ -33,13 +28,7 @@ public class EmployeeController {
         Employee e = employeeService.findById(id);
         return ResponseEntity.ok(e);
     }
-    
-    @RequestMapping("/findallprojects")
-    ResponseEntity<List<Project>> getAllProjects() {
-        return ResponseEntity.ok(projectService.findAllProjects());
-    }
-    
-    
+
     @GetMapping("/ping")
     public String ping() {
         return "OK";

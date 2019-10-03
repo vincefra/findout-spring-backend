@@ -36,8 +36,8 @@ public class Project implements Serializable {
 
     @ManyToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
     @JoinTable(name = "projectechnology",
-            joinColumns = { @JoinColumn(name = "project_id", referencedColumnName = "id") },
-            inverseJoinColumns = { @JoinColumn(name = "technology_id", referencedColumnName = "id") })
+            joinColumns = { @JoinColumn(name = "projectid", referencedColumnName = "id") },
+            inverseJoinColumns = { @JoinColumn(name = "technologyid", referencedColumnName = "id") })
     private List<ProjectTechnology> technologies;
 
     public String getName() {

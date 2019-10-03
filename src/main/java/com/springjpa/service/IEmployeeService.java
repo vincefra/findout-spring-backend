@@ -5,10 +5,11 @@
  */
 package com.springjpa.service;
 
-import com.springjpa.model.Employee;
+import com.springjpa.model.Employee.Employee;
+import com.springjpa.model.Employee.EmployeeDataMap;
 import java.util.List;
 
 public interface IEmployeeService {
-    public List<Employee> findAll();
+    public List<EmployeeDataMap> findAll();
     public Employee findById(long id);
 }

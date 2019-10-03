@@ -118,7 +118,7 @@ ALTER TABLE "public"."office" OWNER TO "postgres";
 DROP TABLE IF EXISTS "public"."project";
 CREATE TABLE "public"."project" (
   "id" SERIAL PRIMARY KEY,
-  "project" varchar COLLATE "pg_catalog"."default",
+  "name" varchar COLLATE "pg_catalog"."default",
   "project_type" varchar COLLATE "pg_catalog"."default",
   "start_dates" varchar COLLATE "pg_catalog"."default",
   "end_dates" varchar COLLATE "pg_catalog"."default",
