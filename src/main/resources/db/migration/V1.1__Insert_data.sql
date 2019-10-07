@@ -4593,7 +4593,9 @@ INSERT INTO "category" VALUES (10,'Housing');
 INSERT INTO "category" VALUES (11,'Health');
 INSERT INTO "category" VALUES (12,'Education');
 INSERT INTO "category" VALUES (13,'Fashion');
-INSERT INTO "category" VALUES (14,'Media');
+INSERT INTO "category" VALUES (14, 'Employment Service');
+INSERT INTO "category" VALUES (15, 'Public Service');
+INSERT INTO "category" VALUES (16, 'Media');
 COMMIT;
 
 -- ----------------------------
