@@ -1,16 +1,18 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.springjpa.model;
 
+import com.springjpa.model.Employee.EmployeeTime;
 import java.io.Serializable;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -36,8 +38,14 @@ public class Customer implements Serializable {
     @Column(name = "description")
     private String description;
     
-    @Column(name = "typeId")
-    private String typeId;
+    @Column(name = "visible")
+    private int visible;
+    
+    @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
+    @JoinTable(name = "customerlocation",
+            joinColumns = { @JoinColumn(name = "customerid", referencedColumnName = "id") },
+            inverseJoinColumns = { @JoinColumn(name = "locationid", referencedColumnName = "id") })
+    private List<Location> location;
 
     public String getName() {
         return name;
@@ -62,5 +70,31 @@ public class Customer implements Serializable {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public int getVisible() {
+        return visible;
+    }
+
+    public void setVisible(int visible) {
+        this.visible = visible;
+    }
+
+    public List<Location> getLocation() {
+        return location;
+    }
+
+    public void setLocation(List<Location> location) {
+        this.location = location;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+    
+    
 
 }

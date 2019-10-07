@@ -11,5 +11,6 @@ import java.util.List;
 
 public interface IEmployeeService {
     public List<EmployeeDataMap> findAll();
+    public List<Employee> findAllTest();
     public Employee findById(long id);
 }

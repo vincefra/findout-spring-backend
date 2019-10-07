@@ -1,5 +1,6 @@
 package com.springjpa.model.Employee;
 
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,7 +10,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "employeetime")
-public class EmployeeTime {
+public class EmployeeTime implements Serializable {
     
     private static final long serialVersionUID = 6L;
     
@@ -17,9 +18,8 @@ public class EmployeeTime {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     
-    /*
     @Column(name = "employeeid")
-    private int employeeId;*/
+    private int employeeid;
 
     @Column(name = "yearin")
     private int startYear;
@@ -31,8 +31,20 @@ public class EmployeeTime {
         return startYear;
     }
 
-    public void setStartYear(int startYear) {
-        this.startYear = startYear;
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public int getEmployeeid() {
+        return employeeid;
+    }
+
+    public void setEmployeeid(int employeeid) {
+        this.employeeid = employeeid;
     }
 
     public int getEndYear() {
@@ -42,5 +54,4 @@ public class EmployeeTime {
     public void setEndYear(int endYear) {
         this.endYear = endYear;
     }
-    
 }

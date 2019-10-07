@@ -1,5 +1,8 @@
 package com.springjpa.model.Project;
 
+import com.springjpa.model.Customer;
+import com.springjpa.model.Employee.Employee;
+import com.springjpa.model.Technology;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.CascadeType;
@@ -11,13 +14,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-/**
- *
- * @author work
- */
 @Entity
 @Table(name = "project")
 public class Project implements Serializable {
@@ -30,15 +29,34 @@ public class Project implements Serializable {
 
     @Column(name = "name")
     private String name;
-
-    @Column(name = "description")
+    
+    @Column(name = "project")
     private String description;
 
-    @ManyToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
+    @Column(name = "type")
+    private String type;
+
+    @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
     @JoinTable(name = "projectechnology",
             joinColumns = { @JoinColumn(name = "projectid", referencedColumnName = "id") },
             inverseJoinColumns = { @JoinColumn(name = "technologyid", referencedColumnName = "id") })
-    private List<ProjectTechnology> technologies;
+    private List<Technology> technologies;
+    
+    @OneToMany
+    @JoinColumn(name = "projectid", referencedColumnName="id")
+    private List<ProjectTime> projecttime;
+    
+    @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
+    @JoinTable(name = "projectcustomer",
+            joinColumns = { @JoinColumn(name = "projectid", referencedColumnName = "id") },
+            inverseJoinColumns = { @JoinColumn(name = "customerid", referencedColumnName = "id") })
+    private List<Customer> customers;
+    
+    @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
+    @JoinTable(name = "projectemployee",
+            joinColumns = { @JoinColumn(name = "projectid", referencedColumnName = "id") },
+            inverseJoinColumns = { @JoinColumn(name = "employeeid", referencedColumnName = "id") })
+    private List<Employee> employees;
 
     public String getName() {
         return name;
@@ -56,11 +74,49 @@ public class Project implements Serializable {
         this.description = description;
     }
 
-    public List<ProjectTechnology> getTechnologies() {
+    public List<Technology> getTechnologies() {
         return technologies;
     }
 
-    public void setTechnologies(List<ProjectTechnology> technologies) {
+    public void setTechnologies(List<Technology> technologies) {
         this.technologies = technologies;
     }
+
+    public long getId() {
+        return id;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public List<ProjectTime> getProjecttime() {
+        return projecttime;
+    }
+
+    public void setProjecttime(List<ProjectTime> projecttime) {
+        this.projecttime = projecttime;
+    }
+
+    public List<Customer> getCustomers() {
+        return customers;
+    }
+
+    public void setCustomers(List<Customer> customers) {
+        this.customers = customers;
+    }
+
+    public List<Employee> getEmployees() {
+        return employees;
+    }
+
+    public void setEmployees(List<Employee> employees) {
+        this.employees = employees;
+    }
+    
+    
 }

@@ -1,14 +1,19 @@
 package com.springjpa.model.Employee;
 
+import com.springjpa.model.Office;
+import com.springjpa.model.Technology;
 import java.io.Serializable;
 import java.util.List;
+import javax.persistence.CascadeType;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -35,10 +40,29 @@ public class Employee implements Serializable {
 
     @Column(name = "privacy")
     private int privacy;
+    
+    //ManyTomany
+    @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
+    @JoinTable(name = "employeetech",
+            joinColumns = { @JoinColumn(name = "employeeid", referencedColumnName = "id") },
+            inverseJoinColumns = { @JoinColumn(name = "technologyid", referencedColumnName = "id") })
+    private List<Technology> technologies;
 
+    /*
+    @OneToMany(cascade=CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinTable(name="employeetime", joinColumns={@JoinColumn(name="employeeid", referencedColumnName="id")})*/
+    //@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    
     @OneToMany
-    private List<EmployeeTime> employeeTime;
-
+    @JoinColumn(name = "employeeid", referencedColumnName="id")
+    private List<EmployeeTime> workingyears;
+    
+    @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
+    @JoinTable(name = "employeeoffice",
+            joinColumns = { @JoinColumn(name = "employeeid", referencedColumnName = "id") },
+            inverseJoinColumns = { @JoinColumn(name = "officeid", referencedColumnName = "id") })
+    private List<Office> office;
+    
     /*
     protected Employee() {
     }
@@ -71,14 +95,6 @@ public class Employee implements Serializable {
         this.role = role;
     }
 
-    public List<EmployeeTime> getEmployeeTime() {
-        return employeeTime;
-    }
-
-    public void setEmployeeTime(List<EmployeeTime> employeeTime) {
-        this.employeeTime = employeeTime;
-    }
-
     public String getFirstName() {
         return firstName;
     }
@@ -102,4 +118,28 @@ public class Employee implements Serializable {
     public void setBirthYear(int birthYear) {
         this.birthYear = birthYear;
     } 
+
+    public List<EmployeeTime> getWorkingyears() {
+        return workingyears;
+    }
+
+    public void setWorkingyears(List<EmployeeTime> employeeTime) {
+        this.workingyears = employeeTime;
+    }
+
+    public List<Technology> getTechnologies() {
+        return technologies;
+    }
+
+    public void setTechnologies(List<Technology> technologies) {
+        this.technologies = technologies;
+    }
+
+    public List<Office> getOffice() {
+        return office;
+    }
+
+    public void setOffice(List<Office> office) {
+        this.office = office;
+    }
 }

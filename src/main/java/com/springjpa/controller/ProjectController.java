@@ -1,6 +1,6 @@
 package com.springjpa.controller;
 
-import com.springjpa.model.Project.Project;
+import com.springjpa.model.Project.ProjectDataMap;
 import com.springjpa.service.IProjectService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +22,8 @@ public class ProjectController {
     private IProjectService projectService;
  
     @RequestMapping("/findall")
-    ResponseEntity<List<Project>> getAllProjects() {
-        return ResponseEntity.ok(projectService.findAllProjects());
+    ResponseEntity<List<ProjectDataMap>> getAllProjects() {
+        return ResponseEntity.ok(projectService.findAll());
     }
     
     @GetMapping("/ping")

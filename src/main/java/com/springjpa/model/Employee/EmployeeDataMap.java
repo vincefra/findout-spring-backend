@@ -1,14 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.springjpa.model.Employee;
 
-/**
- *
- * @author work
- */
+import com.springjpa.model.Office;
+import com.springjpa.model.Technology;
+import java.util.List;
+
 public class EmployeeDataMap {
     
     private long id;
@@ -18,8 +13,8 @@ public class EmployeeDataMap {
     private String role;
     private int startYear;
     private int endYear;
-    private String location;
-    private String technologies;
+    private List<String> location;
+    private List<String> technologies;
 
     
     private EmployeeDataMap(){
@@ -27,8 +22,8 @@ public class EmployeeDataMap {
     }
     
     public EmployeeDataMap(long id, String name, String lastname, int birthyear,
-            String role, int yearin, int yearout, String location, 
-            String technologies){
+            String role, int yearin, int yearout, List<String> location, 
+            List<String> technologies){
         
         this.id = id;
         this.firstName = name;
@@ -97,19 +92,19 @@ public class EmployeeDataMap {
         this.endYear = endYear;
     }
 
-    public String getLocation() {
+    public List<String> getLocation() {
         return location;
     }
 
-    public void setLocation(String location) {
+    public void setLocation(List<String> location) {
         this.location = location;
     }
 
-    public String getTechnologies() {
+    public List<String> getTechnologies() {
         return technologies;
     }
 
-    public void setTechnologies(String technologies) {
+    public void setTechnologies(List<String> technologies) {
         this.technologies = technologies;
     }
 }
