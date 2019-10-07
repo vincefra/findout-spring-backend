@@ -17,225 +17,268 @@
 
 
 -- ----------------------------
+-- Table structure for employee
+-- ----------------------------
+DROP TABLE IF EXISTS "employee";
+CREATE TABLE "employee" (
+ "id" SERIAL PRIMARY KEY,
+ "name" varchar(100) COLLATE "pg_catalog"."default",
+ "lastname" varchar(100) COLLATE "pg_catalog"."default",
+ "birthyear" int4,
+ "roletype" varchar(100) COLLATE "pg_catalog"."default",
+ "visible" int4 --if the employee wants to be visible (1) or not (0)
+)
+;
+ALTER TABLE "employee" OWNER TO "postgres";
+
+-- ----------------------------
 -- Table structure for customer
 -- ----------------------------
-DROP TABLE IF EXISTS "public"."customer";
-CREATE TABLE "public"."customer" (
+DROP TABLE IF EXISTS "customer";
+CREATE TABLE "customer" (
   "id" SERIAL PRIMARY KEY,
   "name" varchar(100) COLLATE "pg_catalog"."default",
   "category" varchar(100) COLLATE "pg_catalog"."default",
-  "description" varchar(100) COLLATE "pg_catalog"."default"
+  "description" varchar(100) COLLATE "pg_catalog"."default",
+  "visible" int4 NOT NULL
 )
 ;
-ALTER TABLE "public"."customer" OWNER TO "postgres";
-
--- ----------------------------
--- Table structure for customerlocation
--- ----------------------------
-DROP TABLE IF EXISTS "public"."customerlocation";
-CREATE TABLE "public"."customerlocation" (
-  "id" int4 NOT NULL,
-  "locationId" int4 NOT NULL
-)
-;
-ALTER TABLE "public"."customerlocation" OWNER TO "postgres";
-
--- ----------------------------
--- Table structure for employee
--- ----------------------------
-DROP TABLE IF EXISTS "public"."employee";
-CREATE TABLE "public"."employee" (
-  "id" SERIAL PRIMARY KEY,
-  "name" varchar(100) COLLATE "pg_catalog"."default",
-  "lastname" varchar(100) COLLATE "pg_catalog"."default",
-  "type" varchar(100) COLLATE "pg_catalog"."default",
-  "birthyear" int4,
-  "languages" varchar COLLATE "pg_catalog"."default"
-)
-;
-ALTER TABLE "public"."employee" OWNER TO "postgres";
-
--- ----------------------------
--- Table structure for employeeoffice
--- ----------------------------
-DROP TABLE IF EXISTS "public"."employeeoffice";
-CREATE TABLE "public"."employeeoffice" (
-  "id" SERIAL PRIMARY KEY,
-  "officeId" int4
-)
-;
-ALTER TABLE "public"."employeeoffice" OWNER TO "postgres";
-
--- ----------------------------
--- Table structure for employeetech
--- ----------------------------
-DROP TABLE IF EXISTS "public"."employeetech";
-CREATE TABLE "public"."employeetech" (
-  "employeeId" int4,
-  "tech" varchar COLLATE "pg_catalog"."default",
-  "technologyId" int4
-)
-;
-ALTER TABLE "public"."employeetech" OWNER TO "postgres";
-
--- ----------------------------
--- Table structure for employeetime
--- ----------------------------
-DROP TABLE IF EXISTS "public"."employeetime";
-CREATE TABLE "public"."employeetime" (
-  "employeeId" int4 NOT NULL,
-  "year_in" varchar COLLATE "pg_catalog"."default" NOT NULL,
-  "year_out" varchar COLLATE "pg_catalog"."default" NOT NULL
-)
-;
-ALTER TABLE "public"."employeetime" OWNER TO "postgres";
+ALTER TABLE "customer" OWNER TO "postgres";
 
 -- ----------------------------
 -- Table structure for location
 -- ----------------------------
-DROP TABLE IF EXISTS "public"."location";
-CREATE TABLE "public"."location" (
+DROP TABLE IF EXISTS "location";
+CREATE TABLE "location" (
   "id" SERIAL PRIMARY KEY,
   "location" varchar(255) COLLATE "pg_catalog"."default"
 )
 ;
-ALTER TABLE "public"."location" OWNER TO "postgres";
+ALTER TABLE "location" OWNER TO "postgres";
+
+-- ----------------------------
+-- Table structure for customerlocation
+-- ----------------------------
+DROP TABLE IF EXISTS "customerlocation";
+CREATE TABLE "customerlocation" (
+  "customerid" int4 REFERENCES customer(id),
+  "locationid" int4 REFERENCES location(id)
+)
+;
+ALTER TABLE "customerlocation" OWNER TO "postgres";
 
 -- ----------------------------
 -- Table structure for office
 -- ----------------------------
-DROP TABLE IF EXISTS "public"."office";
-CREATE TABLE "public"."office" (
+DROP TABLE IF EXISTS "office";
+CREATE TABLE "office" (
   "id" SERIAL PRIMARY KEY,
   "office" varchar(255) COLLATE "pg_catalog"."default"
 )
 ;
-ALTER TABLE "public"."office" OWNER TO "postgres";
+ALTER TABLE "office" OWNER TO "postgres";
 
 -- ----------------------------
--- Table structure for project
+-- Table structure for employeeoffice
 -- ----------------------------
-DROP TABLE IF EXISTS "public"."project";
-CREATE TABLE "public"."project" (
-  "id" SERIAL PRIMARY KEY,
-  "name" varchar COLLATE "pg_catalog"."default",
-  "project_type" varchar COLLATE "pg_catalog"."default",
-  "start_dates" varchar COLLATE "pg_catalog"."default",
-  "end_dates" varchar COLLATE "pg_catalog"."default",
-  "description" varchar COLLATE "pg_catalog"."default"
+DROP TABLE IF EXISTS "employeeoffice";
+CREATE TABLE "employeeoffice" (
+ "employeeid" int4 REFERENCES employee(id) , 
+ "officeid" int4 REFERENCES office(id)
 )
 ;
-ALTER TABLE "public"."project" OWNER TO "postgres";
-
--- ----------------------------
--- Table structure for projectcustomer
--- ----------------------------
-DROP TABLE IF EXISTS "public"."projectcustomer";
-CREATE TABLE "public"."projectcustomer" (
-  "id" SERIAL PRIMARY KEY,
-  "customerId" int4,
-  "customer" varchar COLLATE "pg_catalog"."default"
-)
-;
-ALTER TABLE "public"."projectcustomer" OWNER TO "postgres";
-
--- ----------------------------
--- Table structure for projectechnology
--- ----------------------------
-DROP TABLE IF EXISTS "public"."projectechnology";
-CREATE TABLE "public"."projectechnology" (
-  "projectId" int4 NOT NULL,
-  "technologyId" int4 NOT NULL
-)
-;
-ALTER TABLE "public"."projectechnology" OWNER TO "postgres";
-
--- ----------------------------
--- Table structure for projectemployee
--- ----------------------------
-DROP TABLE IF EXISTS "public"."projectemployee";
-CREATE TABLE "public"."projectemployee" (
-  "projectId" int4 NOT NULL,
-  "employeeId" int4 NOT NULL
-)
-;
-ALTER TABLE "public"."projectemployee" OWNER TO "postgres";
-
--- ----------------------------
--- Table structure for projecttime
--- ----------------------------
-DROP TABLE IF EXISTS "public"."projecttime";
-CREATE TABLE "public"."projecttime" (
-  "id" int4 not null,
-  "start_dates" varchar COLLATE "pg_catalog"."default",
-  "end_dates" varchar COLLATE "pg_catalog"."default"
-)
-;
-ALTER TABLE "public"."projecttime" OWNER TO "postgres";
+ALTER TABLE "employeeoffice" OWNER TO "postgres";
 
 -- ----------------------------
 -- Table structure for technology
 -- ----------------------------
-DROP TABLE IF EXISTS "public"."technology";
-CREATE TABLE "public"."technology" (
+DROP TABLE IF EXISTS "technology";
+CREATE TABLE "technology" (
   "id" SERIAL PRIMARY KEY,
   "technology" varchar COLLATE "pg_catalog"."default"
 )
 ;
-ALTER TABLE "public"."technology" OWNER TO "postgres";
+ALTER TABLE "technology" OWNER TO "postgres";
 
+-- ----------------------------
+-- Table structure for employeetech
+-- ----------------------------
+DROP TABLE IF EXISTS "employeetech";
+CREATE TABLE "employeetech" (
+ "employeeid" int4 REFERENCES employee(id) ,
+ "technologyid" int4 REFERENCES technology(id)
+)
+;
+ALTER TABLE "employeetech" OWNER TO "postgres";
+
+-- ----------------------------
+-- Table structure for employeetime
+-- ----------------------------
+DROP TABLE IF EXISTS "employeetime";
+CREATE TABLE "employeetime" (
+ "id" SERIAL PRIMARY KEY,
+ "employeeid" int4 REFERENCES employee(id) ,
+ "yearin" varchar COLLATE "pg_catalog"."default" NOT NULL,
+ "yearout" varchar COLLATE "pg_catalog"."default" NOT NULL
+)
+;
+ALTER TABLE "employeetime" OWNER TO "postgres";
+
+-- ----------------------------
+-- Table structure for project
+-- ----------------------------
+DROP TABLE IF EXISTS "project";
+CREATE TABLE "project" (
+  "id" SERIAL PRIMARY KEY,
+  "name" varchar COLLATE "pg_catalog"."default",
+  "type" varchar COLLATE "pg_catalog"."default",
+  "description" varchar COLLATE "pg_catalog"."default"
+)
+;
+ALTER TABLE "project" OWNER TO "postgres";
+
+-- ----------------------------
+-- Table structure for projectcustomer
+-- ----------------------------
+DROP TABLE IF EXISTS "projectcustomer";
+CREATE TABLE "projectcustomer" (
+  "projectid" int4 REFERENCES project(id),
+  "customerid" int4
+)
+;
+ALTER TABLE "projectcustomer" OWNER TO "postgres";
+
+-- ----------------------------
+-- Table structure for projectechnology
+-- ----------------------------
+DROP TABLE IF EXISTS "projectechnology";
+CREATE TABLE "projectechnology" (
+  "projectid" int4 REFERENCES project(id),
+  "technologyid" int4 REFERENCES technology(id)
+)
+;
+ALTER TABLE "projectechnology" OWNER TO "postgres";
+
+-- ----------------------------
+-- Table structure for projectemployee
+-- ----------------------------
+DROP TABLE IF EXISTS "projectemployee";
+CREATE TABLE "projectemployee" (
+  "projectid" int4 REFERENCES project(id),
+  "employeeid" int4 REFERENCES employee(id)
+)
+;
+ALTER TABLE "projectemployee" OWNER TO "postgres";
+
+-- ----------------------------
+-- Table structure for projecttime
+-- ----------------------------
+DROP TABLE IF EXISTS "projecttime";
+CREATE TABLE "projecttime" (
+  "id" SERIAL PRIMARY KEY,
+  "projectid" int4 REFERENCES project(id),
+  "startdate" varchar COLLATE "pg_catalog"."default",
+  "enddate" varchar COLLATE "pg_catalog"."default"
+)
+;
+ALTER TABLE "projecttime" OWNER TO "postgres";
+
+
+-- ----------------------------
+-- Table structure for role
+-- ----------------------------
+DROP TABLE IF EXISTS "role";
+CREATE TABLE "role" (
+  "id" SERIAL PRIMARY KEY,
+  "role" varchar COLLATE "pg_catalog"."default"
+)
+;
+ALTER TABLE "role" OWNER TO "postgres";
+
+-- ----------------------------
+-- Table structure for employeerole
+-- ----------------------------
+DROP TABLE IF EXISTS "employeerole";
+CREATE TABLE "employeerole" (
+ "employeeid" int4 REFERENCES employee(id),
+ "roleid" int4 REFERENCES role(id)
+)
+;
+ALTER TABLE "employeerole" OWNER TO "postgres";
+
+-- ----------------------------
+-- Table structure for Category
+-- ----------------------------
+DROP TABLE IF EXISTS "category";
+CREATE TABLE "category" (
+ "id" SERIAL PRIMARY KEY,
+ "category" varchar COLLATE "pg_catalog"."default"
+)
+;
+ALTER TABLE "category" OWNER TO "postgres";
+
+-- ----------------------------
+-- Table structure for CustomerCategory
+-- ----------------------------
+DROP TABLE IF EXISTS "customercategory";
+CREATE TABLE "customercategory" (
+ "customerid" int4 REFERENCES customer(id),
+ "categoryid" int4 REFERENCES category(id)
+)
+;
+ALTER TABLE "customercategory" OWNER TO "postgres"; 
 /*
 -- ----------------------------
 -- Primary Key structure for table customer
 -- ----------------------------
-ALTER TABLE "public"."customer" ADD CONSTRAINT "customer_pkey" PRIMARY KEY ("id");
+ALTER TABLE "customer" ADD CONSTRAINT "customer_pkey" PRIMARY KEY ("id");
 
 -- ----------------------------
 -- Primary Key structure for table customerlocation
 -- ----------------------------
-ALTER TABLE "public"."customerlocation" ADD CONSTRAINT "customerlocation_pkey" PRIMARY KEY ("id", "locationId");
+ALTER TABLE "customerlocation" ADD CONSTRAINT "customerlocation_pkey" PRIMARY KEY ("id", "locationId");
 
 -- ----------------------------
 -- Primary Key structure for table employee
 -- ----------------------------
-ALTER TABLE "public"."employee" ADD CONSTRAINT "employee_pkey" PRIMARY KEY ("id");
+ALTER TABLE "employee" ADD CONSTRAINT "employee_pkey" PRIMARY KEY ("id");
 
 -- ----------------------------
 -- Primary Key structure for table employeeoffice
 -- ----------------------------
-ALTER TABLE "public"."employeeoffice" ADD CONSTRAINT "employeeoffice_pkey" PRIMARY KEY ("id");
+ALTER TABLE "employeeoffice" ADD CONSTRAINT "employeeoffice_pkey" PRIMARY KEY ("id");
 
 -- ----------------------------
 -- Primary Key structure for table employeetime
 -- ----------------------------
-ALTER TABLE "public"."employeetime" ADD CONSTRAINT "employeetime_pkey" PRIMARY KEY ("year_in", "employeeId", "year_out");
+ALTER TABLE "employeetime" ADD CONSTRAINT "employeetime_pkey" PRIMARY KEY ("year_in", "employeeId", "year_out");
 
 -- ----------------------------
 -- Primary Key structure for table location
 -- ----------------------------
-ALTER TABLE "public"."location" ADD CONSTRAINT "location_pkey" PRIMARY KEY ("id");
+ALTER TABLE "location" ADD CONSTRAINT "location_pkey" PRIMARY KEY ("id");
 
 -- ----------------------------
 -- Primary Key structure for table office
 -- ----------------------------
-ALTER TABLE "public"."office" ADD CONSTRAINT "office_pkey" PRIMARY KEY ("id");
+ALTER TABLE "office" ADD CONSTRAINT "office_pkey" PRIMARY KEY ("id");
 
 -- ----------------------------
 -- Primary Key structure for table project
 -- ----------------------------
-ALTER TABLE "public"."project" ADD CONSTRAINT "projects_pkey" PRIMARY KEY ("id");
+ALTER TABLE "project" ADD CONSTRAINT "projects_pkey" PRIMARY KEY ("id");
 
 -- ----------------------------
 -- Primary Key structure for table projectechnology
 -- ----------------------------
-ALTER TABLE "public"."projectechnology" ADD CONSTRAINT "projectechnology_pkey" PRIMARY KEY ("projectId", "technologyId");
+ALTER TABLE "projectechnology" ADD CONSTRAINT "projectechnology_pkey" PRIMARY KEY ("projectId", "technologyId");
 
 -- ----------------------------
 -- Primary Key structure for table projectemployee
 -- ----------------------------
-ALTER TABLE "public"."projectemployee" ADD CONSTRAINT "projectemployee_pkey" PRIMARY KEY ("projectId", "employeeId");
+ALTER TABLE "projectemployee" ADD CONSTRAINT "projectemployee_pkey" PRIMARY KEY ("projectId", "employeeId");
 
 -- ----------------------------
 -- Primary Key structure for table technology
 -- ----------------------------
-ALTER TABLE "public"."technology" ADD CONSTRAINT "technology_pkey" PRIMARY KEY ("id");*/
+ALTER TABLE "technology" ADD CONSTRAINT "technology_pkey" PRIMARY KEY ("id");*/

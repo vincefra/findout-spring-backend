@@ -10,12 +10,12 @@ public class CustomerDataMap {
     
     private long id;
     private String name;
-    private String category;
+    private List<String> category;
     private List<String> location;
     private String description;
     private int visible;
 
-    public CustomerDataMap(long id, String name, String category, List<String> location, String description, int visible) {
+    public CustomerDataMap(long id, String name, List<String> category, List<String> location, String description, int visible) {
         this.id = id;
         this.name = name;
         this.category = category;
@@ -40,11 +40,11 @@ public class CustomerDataMap {
         this.name = name;
     }
 
-    public String getCategory() {
+    public List<String> getCategory() {
         return category;
     }
 
-    public void setCategory(String category) {
+    public void setCategory(List<String> category) {
         this.category = category;
     }
 

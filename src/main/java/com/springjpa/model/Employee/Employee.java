@@ -1,6 +1,7 @@
 package com.springjpa.model.Employee;
 
 import com.springjpa.model.Office;
+import com.springjpa.model.Role;
 import com.springjpa.model.Technology;
 import java.io.Serializable;
 import java.util.List;
@@ -35,11 +36,14 @@ public class Employee implements Serializable {
     @Column(name = "birthyear")
     private int birthYear;
 
-    @Column(name = "roletype")
-    private String role;
+    @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
+    @JoinTable(name = "employeerole",
+            joinColumns = { @JoinColumn(name = "employeeid", referencedColumnName = "id") },
+            inverseJoinColumns = { @JoinColumn(name = "roleid", referencedColumnName = "id") })
+    private List<Role> role;
 
-    @Column(name = "privacy")
-    private int privacy;
+    @Column(name = "visible")
+    private int visible;
     
     //ManyTomany
     @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
@@ -85,14 +89,6 @@ public class Employee implements Serializable {
 
     public void setId(long id) {
         this.id = id;
-    }
-
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
     }
 
     public String getFirstName() {
@@ -142,4 +138,23 @@ public class Employee implements Serializable {
     public void setOffice(List<Office> office) {
         this.office = office;
     }
+
+    public List<Role> getRole() {
+        return role;
+    }
+
+    public void setRole(List<Role> role) {
+        this.role = role;
+    }
+
+    public int getVisible() {
+        return visible;
+    }
+
+    public void setVisible(int visible) {
+        this.visible = visible;
+    }
+    
+    
+    
 }

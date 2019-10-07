@@ -2,8 +2,8 @@ package com.springjpa.service;
 
 import com.springjpa.model.Employee.Employee;
 import com.springjpa.model.Employee.EmployeeDataMap;
-import com.springjpa.model.Employee.EmployeeTechnology;
 import com.springjpa.model.Office;
+import com.springjpa.model.Role;
 import com.springjpa.model.Technology;
 import com.springjpa.repo.EmployeeRepository;
 import java.time.Year;
@@ -34,6 +34,7 @@ public class EmployeeService implements IEmployeeService {
             //Array för tech och office
             List<String> tech = new ArrayList();
             List<String> office = new ArrayList();
+            List<String> role = new ArrayList();
             
             //Gå igenom alla teknik och spara i en array istället
             for (Technology t : e.getTechnologies()) 
@@ -42,11 +43,14 @@ public class EmployeeService implements IEmployeeService {
             for (Office o : e.getOffice()) 
                 office.add(o.getOffice());
             
+            for (Role r : e.getRole()) 
+                role.add(r.getRole());
+            
             //Mappa sen returnera
             em.add(new EmployeeDataMap(e.getId(),
                     e.getFirstName(),
                     e.getLastName(),
-                    e.getBirthYear(), e.getRole(),
+                    e.getBirthYear(), role,
                     e.getWorkingyears().get(0).getStartYear(),
                     e.getWorkingyears().get(0).getEndYear() > 1 ? e.getWorkingyears().get(0).getEndYear() : Year.now().getValue(), office,
                     tech));

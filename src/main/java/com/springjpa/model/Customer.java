@@ -1,6 +1,5 @@
 package com.springjpa.model;
 
-import com.springjpa.model.Employee.EmployeeTime;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.CascadeType;
@@ -32,8 +31,11 @@ public class Customer implements Serializable {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "category")
-    private String category;
+    @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
+    @JoinTable(name = "customercategory",
+            joinColumns = { @JoinColumn(name = "customerid", referencedColumnName = "id") },
+            inverseJoinColumns = { @JoinColumn(name = "categoryid", referencedColumnName = "id") })
+    private List<Category> category;
 
     @Column(name = "description")
     private String description;
@@ -53,14 +55,6 @@ public class Customer implements Serializable {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
     }
 
     public String getDescription() {
@@ -94,7 +88,13 @@ public class Customer implements Serializable {
     public void setId(long id) {
         this.id = id;
     }
-    
-    
+
+    public List<Category> getCategory() {
+        return category;
+    }
+
+    public void setCategory(List<Category> category) {
+        this.category = category;
+    } 
 
 }

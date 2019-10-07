@@ -1,10 +1,10 @@
 package com.springjpa.service;
 
+import com.springjpa.model.Category;
 import com.springjpa.model.Customer;
 import com.springjpa.model.CustomerDataMap;
 import com.springjpa.model.Location;
 import com.springjpa.repo.CustomerRepository;
-import com.springjpa.repo.EmployeeRepository;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,12 +34,16 @@ public class CustomerService implements ICustomerService {
         for (Customer c : repository.findAll()) {
             
             List<String> location = new ArrayList();
+            List<String> category = new ArrayList();
             
             for (Location l : c.getLocation()) 
                 location.add(l.getLocation());
             
+            for (Category cc : c.getCategory()) 
+                category.add(cc.getCategory());
+            
             //Mappa sen returnera
-            cm.add(new CustomerDataMap(c.getId(), c.getName(), c.getCategory(), location, c.getDescription(), c.getVisible()));
+            cm.add(new CustomerDataMap(c.getId(), c.getName(), category, location, c.getDescription(), c.getVisible()));
         }
         return cm;
     }

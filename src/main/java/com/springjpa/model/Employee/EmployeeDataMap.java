@@ -10,7 +10,7 @@ public class EmployeeDataMap {
     private String firstName;
     private String lastName;
     private int birthYear;
-    private String role;
+    private List<String> role;
     private int startYear;
     private int endYear;
     private List<String> location;
@@ -22,7 +22,7 @@ public class EmployeeDataMap {
     }
     
     public EmployeeDataMap(long id, String name, String lastname, int birthyear,
-            String role, int yearin, int yearout, List<String> location, 
+            List<String> role, int yearin, int yearout, List<String> location, 
             List<String> technologies){
         
         this.id = id;
@@ -68,11 +68,11 @@ public class EmployeeDataMap {
         this.birthYear = birthYear;
     }
 
-    public String getRole() {
+    public List<String> getRole() {
         return role;
     }
 
-    public void setRole(String role) {
+    public void setRole(List<String> role) {
         this.role = role;
     }
 
