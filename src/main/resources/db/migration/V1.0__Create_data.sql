@@ -25,7 +25,6 @@ CREATE TABLE "employee" (
  "name" varchar(100) COLLATE "pg_catalog"."default",
  "lastname" varchar(100) COLLATE "pg_catalog"."default",
  "birthyear" int4,
- "roletype" varchar(100) COLLATE "pg_catalog"."default",
  "visible" int4 --if the employee wants to be visible (1) or not (0)
 )
 ;
