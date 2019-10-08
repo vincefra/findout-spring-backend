@@ -117,9 +117,9 @@ ALTER TABLE "employeetech" OWNER TO "postgres";
 DROP TABLE IF EXISTS "employeetime";
 CREATE TABLE "employeetime" (
  "id" SERIAL PRIMARY KEY,
- "employeeid" int4 REFERENCES employee(id) ,
- "yearin" varchar COLLATE "pg_catalog"."default" NOT NULL,
- "yearout" varchar COLLATE "pg_catalog"."default" NOT NULL
+ "employeeid" int4 REFERENCES employee(id),
+ "yearin" int4 NOT NULL,
+ "yearout" int4 NOT NULL
 )
 ;
 ALTER TABLE "employeetime" OWNER TO "postgres";
