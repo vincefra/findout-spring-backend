@@ -69,7 +69,7 @@ public class EmployeeService implements IEmployeeService {
 
         //Hämta alla employees
         for (Employee e : repository.findAll()) {
-            
+            e.setId(e.getId()-1);
             //Array för tech och office
             String tech = "";
             String office = "";

@@ -117,6 +117,10 @@ public class Project implements Serializable {
     public void setEmployees(List<Employee> employees) {
         this.employees = employees;
     }
+
+    public void setId(long id) {
+        this.id = id;
+    }
     
     
 }

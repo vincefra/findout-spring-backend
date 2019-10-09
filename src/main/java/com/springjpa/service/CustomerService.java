@@ -60,6 +60,8 @@ public class CustomerService implements ICustomerService {
         //Hämta alla customer
         for (Customer c : repository.findAll()) {
 
+            c.setId(c.getId()-1);
+            
             String location = "";
             String category = "";
 

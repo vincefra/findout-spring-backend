@@ -61,6 +61,7 @@ public class ProjectService implements IProjectService {
         List<ProjectDataMapNoArrays> cfp = new ArrayList();
         for (Project p : repository.findAll())
         {
+            p.setId(p.getId()-1);
             String employees = "";
             String customers = "";
             String technologies = "";
