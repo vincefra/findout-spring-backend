@@ -1,6 +1,7 @@
 package com.springjpa.controller;
 
 import com.springjpa.model.Project.ProjectDataMap;
+import com.springjpa.model.Project.ProjectDataMapNoArrays;
 import com.springjpa.service.IProjectService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,11 @@ public class ProjectController {
     @RequestMapping("/findall")
     ResponseEntity<List<ProjectDataMap>> getAllProjects() {
         return ResponseEntity.ok(projectService.findAll());
+    }
+    
+    @RequestMapping("/findallnoarray")
+    ResponseEntity<List<ProjectDataMapNoArrays>> getAllProjectsNoArrays() {
+        return ResponseEntity.ok(projectService.findAllNoArrays());
     }
     
     @GetMapping("/ping")

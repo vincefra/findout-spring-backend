@@ -4,6 +4,7 @@ import com.springjpa.model.Customer;
 import com.springjpa.model.Employee.Employee;
 import com.springjpa.model.Project.Project;
 import com.springjpa.model.Project.ProjectDataMap;
+import com.springjpa.model.Project.ProjectDataMapNoArrays;
 import com.springjpa.model.Technology;
 import com.springjpa.repo.ProjectRepository;
 import java.util.ArrayList;
@@ -46,6 +47,44 @@ public class ProjectService implements IProjectService {
                 technologies.add(t.getTechnology());
             
             cfp.add(new ProjectDataMap(p.getId(), p.getName(), p.getType(), p.getProjecttime().get(0).getStartDates(), p.getProjecttime().get(0).getEndDates(), customers, employees, p.getDescription(), technologies));
+        }
+        return cfp;
+    }
+    
+    @Override
+    public List<ProjectDataMapNoArrays> findAllNoArrays() {
+
+        
+        //long id, String name, String type, String startDates, String endDates, 
+        //String client, String employees, String description, String technologies
+        
+        List<ProjectDataMapNoArrays> cfp = new ArrayList();
+        for (Project p : repository.findAll())
+        {
+            String employees = "";
+            String customers = "";
+            String technologies = "";
+            
+            //Gå igenom alla teknik och spara i en array istället
+            for (Employee e : p.getEmployees())
+                if (employees.length() == 0)
+                    employees += (e.getFirstName() + " " + e.getLastName());
+                else
+                    employees += "," + (e.getFirstName() + " " + e.getLastName());
+
+            for (Customer c : p.getCustomers())
+                if (customers.length() == 0)
+                    customers += (c.getName());
+                else
+                    customers += "," + c.getName();
+            
+            for (Technology t : p.getTechnologies())
+                if (technologies.length() == 0)
+                    technologies += (t.getTechnology());
+                else
+                    technologies += "," + t.getTechnology();
+            
+            cfp.add(new ProjectDataMapNoArrays(p.getId(), p.getName(), p.getType(), p.getProjecttime().get(0).getStartDates(), p.getProjecttime().get(0).getEndDates(), customers, employees, p.getDescription(), technologies));
         }
         return cfp;
     }
