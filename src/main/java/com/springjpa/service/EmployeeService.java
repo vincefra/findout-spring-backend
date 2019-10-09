@@ -52,7 +52,8 @@ public class EmployeeService implements IEmployeeService {
             em.add(new EmployeeDataMap(e.getId(),
                     e.getFirstName(),
                     e.getLastName(),
-                    e.getBirthYear(), role,
+                    role,
+                    e.getBirthYear(),
                     e.getWorkingyears().get(0).getStartYear(),
                     e.getWorkingyears().get(0).getEndYear() > 1 ? e.getWorkingyears().get(0).getEndYear() : Year.now().getValue(), office,
                     tech));
@@ -97,7 +98,8 @@ public class EmployeeService implements IEmployeeService {
             em.add(new EmployeeDataMapNoArrays(e.getId(),
                     e.getFirstName(),
                     e.getLastName(),
-                    e.getBirthYear(), role,
+                    role,
+                    e.getBirthYear(),
                     e.getWorkingyears().get(0).getStartYear(),
                     e.getWorkingyears().get(0).getEndYear() > 1 ? e.getWorkingyears().get(0).getEndYear() : Year.now().getValue(), office,
                     tech));

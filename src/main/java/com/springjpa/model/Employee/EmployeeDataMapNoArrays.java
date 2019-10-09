@@ -13,19 +13,19 @@ public class EmployeeDataMapNoArrays {
     private long id;
     private String firstName;
     private String lastName;
-    private int birthYear;
     private String role;
+    private int birthYear;
     private int startYear;
     private int endYear;
     private String location;
     private String technologies;
 
-    public EmployeeDataMapNoArrays(long id, String firstName, String lastName, int birthYear, String role, int startYear, int endYear, String location, String technologies) {
+    public EmployeeDataMapNoArrays(long id, String firstName, String lastName, String role, int birthYear,  int startYear, int endYear, String location, String technologies) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.birthYear = birthYear;
         this.role = role;
+        this.birthYear = birthYear;
         this.startYear = startYear;
         this.endYear = endYear;
         this.location = location;

@@ -9,8 +9,8 @@ public class EmployeeDataMap {
     private long id;
     private String firstName;
     private String lastName;
-    private int birthYear;
     private List<String> role;
+    private int birthYear;
     private int startYear;
     private int endYear;
     private List<String> location;
@@ -21,15 +21,16 @@ public class EmployeeDataMap {
         
     }
     
-    public EmployeeDataMap(long id, String name, String lastname, int birthyear,
-            List<String> role, int yearin, int yearout, List<String> location, 
+    public EmployeeDataMap(long id, String name, String lastname, 
+            List<String> role, int birthyear, 
+            int yearin, int yearout, List<String> location, 
             List<String> technologies){
         
         this.id = id;
         this.firstName = name;
         this.lastName = lastname;
-        this.birthYear = birthyear;
         this.role = role;
+        this.birthYear = birthyear;
         this.startYear = yearin;
         this.endYear = yearout;
         this.location = location;
