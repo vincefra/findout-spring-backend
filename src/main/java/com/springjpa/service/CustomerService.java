@@ -50,6 +50,34 @@ public class CustomerService implements ICustomerService {
         }
         return cm;
     }
+    
+    @Override
+    public List<CustomerDataMap> findAllArraysFromIdZero() {
+
+        //Ny array av mappningen
+        List<CustomerDataMap> cm = new ArrayList();
+
+        //Hämta alla customer
+        for (Customer c : repository.findAll()) {
+            
+            c.setId(c.getId() - 1);
+            
+            List<String> location = new ArrayList();
+            List<String> category = new ArrayList();
+            
+            for (Location l : c.getLocation()) {
+                location.add(l.getLocation());
+            }
+            
+            for (Category cc : c.getCategory()) {
+                category.add(cc.getCategory());
+            }
+
+            //Mappa sen returnera
+            cm.add(new CustomerDataMap(c.getId(), c.getName(), category, location, c.getDescription(), c.getVisible()));
+        }
+        return cm;
+    }
 
     @Override
     public List<CustomerDataMapNoArrays> findAllNoArrays() {

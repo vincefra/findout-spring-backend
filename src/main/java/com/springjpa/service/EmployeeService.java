@@ -11,7 +11,6 @@ import java.time.Year;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -22,6 +21,45 @@ public class EmployeeService implements IEmployeeService {
     @Autowired
     public EmployeeService(EmployeeRepository repository) {
         this.repository = repository;
+    }
+    
+    @Override
+    public List<EmployeeDataMap> findAllArraysIdZero() {
+
+        //Ny array av mappningen
+        List<EmployeeDataMap> em = new ArrayList();
+
+        //Hämta alla employees
+        for (Employee e : repository.findAll()) {
+            
+            e.setId(e.getId()-1);
+            
+            //Array för tech och office
+            List<String> tech = new ArrayList();
+            List<String> office = new ArrayList();
+            List<String> role = new ArrayList();
+            
+            //Gå igenom alla teknik och spara i en array istället
+            for (Technology t : e.getTechnologies()) 
+                tech.add(t.getTechnology());
+
+            for (Office o : e.getOffice()) 
+                office.add(o.getOffice());
+            
+            for (Role r : e.getRole()) 
+                role.add(r.getRole());
+            
+            //Mappa sen returnera
+            em.add(new EmployeeDataMap(e.getId(),
+                    e.getFirstName(),
+                    e.getLastName(),
+                    role,
+                    e.getBirthYear(),
+                    e.getWorkingyears().get(0).getStartYear(),
+                    e.getWorkingyears().get(0).getEndYear() > 1 ? e.getWorkingyears().get(0).getEndYear() : Year.now().getValue(), office,
+                    tech));
+        }
+        return em;
     }
 
     @Override

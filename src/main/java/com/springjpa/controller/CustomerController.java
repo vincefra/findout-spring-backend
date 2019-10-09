@@ -30,4 +30,9 @@ public class CustomerController {
     ResponseEntity<List<CustomerDataMapNoArrays>> getAllCustomersNoArrays() {
         return ResponseEntity.ok(customerService.findAllNoArrays());
     }
+    
+    @RequestMapping("/findallarrayzero")
+    ResponseEntity<List<CustomerDataMapNoArrays>> getAllCustomersArraysIdZero() {
+        return ResponseEntity.ok(customerService.findAllNoArrays());
+    }
 }

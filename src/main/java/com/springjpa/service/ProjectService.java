@@ -52,6 +52,37 @@ public class ProjectService implements IProjectService {
     }
     
     @Override
+    public List<ProjectDataMap> findAllArraysIdZero() {
+
+        
+        //long id, String name, String type, String startDates, String endDates, 
+        //String client, String employees, String description, String technologies
+        
+        List<ProjectDataMap> cfp = new ArrayList();
+        for (Project p : repository.findAll())
+        {
+            p.setId(p.getId()-1);
+            
+            List<String> employees = new ArrayList();
+            List<String> customers = new ArrayList();
+            List<String> technologies = new ArrayList();
+            
+            //Gå igenom alla teknik och spara i en array istället
+            for (Employee e : p.getEmployees())
+                employees.add(e.getFirstName() + " " + e.getLastName());
+
+            for (Customer c : p.getCustomers())
+                customers.add(c.getName());
+            
+            for (Technology t : p.getTechnologies())
+                technologies.add(t.getTechnology());
+            
+            cfp.add(new ProjectDataMap(p.getId(), p.getName(), p.getType(), p.getProjecttime().get(0).getStartDates(), p.getProjecttime().get(0).getEndDates(), customers, employees, p.getDescription(), technologies));
+        }
+        return cfp;
+    }
+    
+    @Override
     public List<ProjectDataMapNoArrays> findAllNoArrays() {
 
         

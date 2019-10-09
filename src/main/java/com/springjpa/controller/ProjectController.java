@@ -32,6 +32,11 @@ public class ProjectController {
         return ResponseEntity.ok(projectService.findAllNoArrays());
     }
     
+    @RequestMapping("/findallarrayzero")
+    ResponseEntity<List<ProjectDataMap>> findAllArraysIdZero() {
+        return ResponseEntity.ok(projectService.findAllArraysIdZero());
+    }
+    
     @GetMapping("/ping")
     public String ping() {
         return "OK";

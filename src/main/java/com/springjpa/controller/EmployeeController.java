@@ -28,6 +28,11 @@ public class EmployeeController {
     ResponseEntity<List<EmployeeDataMapNoArrays>> getAllEmployeesNoArrays() {
         return ResponseEntity.ok(employeeService.findAllNoArrays());
     }
+    
+    @RequestMapping("/findallarrayzero")
+    ResponseEntity<List<EmployeeDataMap>> findAllArraysIdZero() {
+        return ResponseEntity.ok(employeeService.findAllArraysIdZero());
+    }
 
     @RequestMapping("/findbyid")
     ResponseEntity<Employee> getEmployee(@RequestParam("id") long id) {
