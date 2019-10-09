@@ -30,7 +30,7 @@ public class Project implements Serializable {
     @Column(name = "name")
     private String name;
     
-    @Column(name = "project")
+    @Column(name = "description")
     private String description;
 
     @Column(name = "type")
