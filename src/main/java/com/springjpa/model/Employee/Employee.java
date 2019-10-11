@@ -47,7 +47,7 @@ public class Employee implements Serializable {
     
     //ManyTomany
     @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
-    @JoinTable(name = "employeetech",
+    @JoinTable(name = "employeetechnology",
             joinColumns = { @JoinColumn(name = "employeeid", referencedColumnName = "id") },
             inverseJoinColumns = { @JoinColumn(name = "technologyid", referencedColumnName = "id") })
     private List<Technology> technologies;

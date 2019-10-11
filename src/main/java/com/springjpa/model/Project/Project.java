@@ -37,7 +37,7 @@ public class Project implements Serializable {
     private String type;
 
     @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
-    @JoinTable(name = "projectechnology",
+    @JoinTable(name = "projecttechnology",
             joinColumns = { @JoinColumn(name = "projectid", referencedColumnName = "id") },
             inverseJoinColumns = { @JoinColumn(name = "technologyid", referencedColumnName = "id") })
     private List<Technology> technologies;
