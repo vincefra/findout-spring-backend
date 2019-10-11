@@ -10,6 +10,7 @@ import com.springjpa.repo.ProjectRepository;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -30,7 +31,7 @@ public class ProjectService implements IProjectService {
         //String client, String employees, String description, String technologies
         
         List<ProjectDataMap> cfp = new ArrayList();
-        for (Project p : repository.findAll())
+        for (Project p : repository.findAll(Sort.by(Sort.Direction.ASC, "id")))
         {
             List<String> employees = new ArrayList();
             List<String> customers = new ArrayList();
@@ -59,7 +60,7 @@ public class ProjectService implements IProjectService {
         //String client, String employees, String description, String technologies
         
         List<ProjectDataMap> cfp = new ArrayList();
-        for (Project p : repository.findAll())
+        for (Project p : repository.findAll(Sort.by(Sort.Direction.ASC, "id")))
         {
             p.setId(p.getId()-1);
             
@@ -90,7 +91,7 @@ public class ProjectService implements IProjectService {
         //String client, String employees, String description, String technologies
         
         List<ProjectDataMapNoArrays> cfp = new ArrayList();
-        for (Project p : repository.findAll())
+        for (Project p : repository.findAll(Sort.by(Sort.Direction.ASC, "id")))
         {
             p.setId(p.getId()-1);
             String employees = "";

@@ -2,7 +2,6 @@ package com.springjpa.controller;
 
 import com.springjpa.model.CustomerDataMap;
 import com.springjpa.model.CustomerDataMapNoArrays;
-import com.springjpa.model.Employee.EmployeeDataMap;
 import com.springjpa.service.ICustomerService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;

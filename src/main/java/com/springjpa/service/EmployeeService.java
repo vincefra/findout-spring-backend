@@ -11,6 +11,7 @@ import java.time.Year;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -30,7 +31,7 @@ public class EmployeeService implements IEmployeeService {
         List<EmployeeDataMap> em = new ArrayList();
 
         //Hämta alla employees
-        for (Employee e : repository.findAll()) {
+        for (Employee e : repository.findAll(Sort.by(Sort.Direction.ASC, "id"))) {
             
             e.setId(e.getId()-1);
             
@@ -69,7 +70,7 @@ public class EmployeeService implements IEmployeeService {
         List<EmployeeDataMap> em = new ArrayList();
 
         //Hämta alla employees
-        for (Employee e : repository.findAll()) {
+        for (Employee e : repository.findAll(Sort.by(Sort.Direction.ASC, "id"))) {
             
             //Array för tech och office
             List<String> tech = new ArrayList();
@@ -106,7 +107,8 @@ public class EmployeeService implements IEmployeeService {
         List<EmployeeDataMapNoArrays> em = new ArrayList();
 
         //Hämta alla employees
-        for (Employee e : repository.findAll()) {
+        for (Employee e : repository.findAll(Sort.by(Sort.Direction.ASC, "id")))
+        {
             e.setId(e.getId()-1);
             //Array för tech och office
             String tech = "";
@@ -147,7 +149,7 @@ public class EmployeeService implements IEmployeeService {
     
     @Override
     public List<Employee> findAllTest() {
-        return (List<Employee>) repository.findAll();
+        return (List<Employee>) repository.findAll(Sort.by(Sort.Direction.ASC, "id"));
     }
 
     @Override

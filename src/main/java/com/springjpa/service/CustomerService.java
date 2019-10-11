@@ -9,6 +9,7 @@ import com.springjpa.repo.CustomerRepository;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 /**
@@ -32,7 +33,7 @@ public class CustomerService implements ICustomerService {
         List<CustomerDataMap> cm = new ArrayList();
 
         //Hämta alla customer
-        for (Customer c : repository.findAll()) {
+        for (Customer c : repository.findAll(Sort.by(Sort.Direction.ASC, "id"))) {
 
             List<String> location = new ArrayList();
             List<String> category = new ArrayList();
@@ -58,7 +59,7 @@ public class CustomerService implements ICustomerService {
         List<CustomerDataMap> cm = new ArrayList();
 
         //Hämta alla customer
-        for (Customer c : repository.findAll()) {
+        for (Customer c : repository.findAll(Sort.by(Sort.Direction.ASC, "id"))) {
             
             c.setId(c.getId() - 1);
             
@@ -86,7 +87,7 @@ public class CustomerService implements ICustomerService {
         List<CustomerDataMapNoArrays> cm = new ArrayList();
 
         //Hämta alla customer
-        for (Customer c : repository.findAll()) {
+        for (Customer c : repository.findAll(Sort.by(Sort.Direction.ASC, "id"))) {
 
             c.setId(c.getId()-1);
             
