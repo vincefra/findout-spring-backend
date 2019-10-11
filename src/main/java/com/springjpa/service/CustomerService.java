@@ -29,52 +29,49 @@ public class CustomerService implements ICustomerService {
     @Override
     public List<CustomerDataMap> findAll() {
 
-        //Ny array av mappningen
+        //New map for customerdata
         List<CustomerDataMap> cm = new ArrayList();
 
-        //Hämta alla customer
+        //Sort by id, added in crud Sort sort
         for (Customer c : repository.findAll(Sort.by(Sort.Direction.ASC, "id"))) {
 
             List<String> location = new ArrayList();
             List<String> category = new ArrayList();
 
-            for (Location l : c.getLocation()) {
+            for (Location l : c.getLocation())
                 location.add(l.getLocation());
-            }
 
-            for (Category cc : c.getCategory()) {
+            for (Category cc : c.getCategory())
                 category.add(cc.getCategory());
-            }
 
-            //Mappa sen returnera
+            //Return the map instead of actual dbclass (with map we can customize)
             cm.add(new CustomerDataMap(c.getId(), c.getName(), category, location, c.getDescription(), c.getVisible()));
         }
         return cm;
     }
-    
+
     @Override
     public List<CustomerDataMap> findAllArraysFromIdZero() {
 
-        //Ny array av mappningen
+        //New map for customerdata
         List<CustomerDataMap> cm = new ArrayList();
 
-        //Hämta alla customer
+        //Sort by id, added in crud Sort sort
         for (Customer c : repository.findAll(Sort.by(Sort.Direction.ASC, "id"))) {
-            
+
+            //our client requires id to start from 0
             c.setId(c.getId() - 1);
-            
+
             List<String> location = new ArrayList();
             List<String> category = new ArrayList();
-            
-            for (Location l : c.getLocation()) {
-                location.add(l.getLocation());
-            }
-            
-            for (Category cc : c.getCategory()) {
-                category.add(cc.getCategory());
-            }
 
-            //Mappa sen returnera
+            for (Location l : c.getLocation())
+                location.add(l.getLocation());
+
+            for (Category cc : c.getCategory())
+                category.add(cc.getCategory());
+
+            //Return the map instead of actual dbclass (with map we can customize)
             cm.add(new CustomerDataMap(c.getId(), c.getName(), category, location, c.getDescription(), c.getVisible()));
         }
         return cm;
@@ -83,33 +80,28 @@ public class CustomerService implements ICustomerService {
     @Override
     public List<CustomerDataMapNoArrays> findAllNoArrays() {
 
-        //Ny array av mappningen
+        //New map for customerdata
         List<CustomerDataMapNoArrays> cm = new ArrayList();
 
-        //Hämta alla customer
+        //Sort by id, added in crud Sort sort
         for (Customer c : repository.findAll(Sort.by(Sort.Direction.ASC, "id"))) {
 
-            c.setId(c.getId()-1);
-            
+            //our client requires id to start from 0
+            c.setId(c.getId() - 1);
+
             String location = "";
             String category = "";
 
-            for (Location l : c.getLocation()) {
-                if (location.length() == 0) 
-                    location += l.getLocation();
-                else 
-                    location += "," + l.getLocation();
-            }
+            //Add , only after one object has been added
+            for (Location l : c.getLocation())
+                location += (location.length() == 0 ? l.getLocation() : "," + l.getLocation());
 
-            for (Category cc : c.getCategory()) {
-                if (category.length() == 0) 
-                    category += cc.getCategory();
-                else 
-                    category += "," + cc.getCategory();
-            }
-                //Mappa sen returnera
-                cm.add(new CustomerDataMapNoArrays(c.getId(), c.getName(), category, location, c.getDescription(), c.getVisible()));
-            }
-            return cm;
+            for (Category cc : c.getCategory()) 
+                category += (category.length() == 0 ? cc.getCategory(): "," + cc.getCategory());
+
+            //Return the map instead of actual dbclass (with map we can customize)
+            cm.add(new CustomerDataMapNoArrays(c.getId(), c.getName(), category, location, c.getDescription(), c.getVisible()));
         }
+        return cm;
     }
+}

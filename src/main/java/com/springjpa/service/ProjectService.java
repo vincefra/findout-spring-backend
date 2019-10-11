@@ -37,7 +37,7 @@ public class ProjectService implements IProjectService {
             List<String> customers = new ArrayList();
             List<String> technologies = new ArrayList();
             
-            //Gå igenom alla teknik och spara i en array istället
+            //Loops for putting objects into one array, instead of multiple arrays in json later
             for (Employee e : p.getEmployees())
                 employees.add(e.getFirstName() + " " + e.getLastName());
 
@@ -68,7 +68,7 @@ public class ProjectService implements IProjectService {
             List<String> customers = new ArrayList();
             List<String> technologies = new ArrayList();
             
-            //Gå igenom alla teknik och spara i en array istället
+             //Loops for putting objects into one array, instead of multiple arrays in json later
             for (Employee e : p.getEmployees())
                 employees.add(e.getFirstName() + " " + e.getLastName());
 
@@ -93,30 +93,23 @@ public class ProjectService implements IProjectService {
         List<ProjectDataMapNoArrays> cfp = new ArrayList();
         for (Project p : repository.findAll(Sort.by(Sort.Direction.ASC, "id")))
         {
+            //Our client requires id to start from 0
             p.setId(p.getId()-1);
+            
             String employees = "";
             String customers = "";
             String technologies = "";
             
-            //Gå igenom alla teknik och spara i en array istället
+             //Loops for putting objects into one array, instead of multiple arrays in json later
             for (Employee e : p.getEmployees())
-                if (employees.length() == 0)
-                    employees += (e.getFirstName() + " " + e.getLastName());
-                else
-                    employees += "," + (e.getFirstName() + " " + e.getLastName());
+                employees += (employees.length() == 0 ? e.getFirstName() : "," + e.getFirstName());
 
             for (Customer c : p.getCustomers())
-                if (customers.length() == 0)
-                    customers += (c.getName());
-                else
-                    customers += "," + c.getName();
+                customers += (customers.length() == 0 ? c.getName(): "," + c.getName());
             
             for (Technology t : p.getTechnologies())
-                if (technologies.length() == 0)
-                    technologies += (t.getTechnology());
-                else
-                    technologies += "," + t.getTechnology();
-            
+                technologies += (technologies.length() == 0 ? t.getTechnology(): "," + t.getTechnology());
+
             cfp.add(new ProjectDataMapNoArrays(p.getId(), p.getName(), p.getType(), p.getProjecttime().get(0).getStartDates(), p.getProjecttime().get(0).getEndDates(), customers, employees, p.getDescription(), technologies));
         }
         return cfp;

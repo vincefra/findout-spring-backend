@@ -26,21 +26,19 @@ public class EmployeeService implements IEmployeeService {
     
     @Override
     public List<EmployeeDataMap> findAllArraysIdZero() {
-
-        //Ny array av mappningen
         List<EmployeeDataMap> em = new ArrayList();
 
-        //Hämta alla employees
+        //findAll(Sort by id, ASC)
         for (Employee e : repository.findAll(Sort.by(Sort.Direction.ASC, "id"))) {
             
+            //Our client requires id to start from 0
             e.setId(e.getId()-1);
-            
-            //Array för tech och office
+
             List<String> tech = new ArrayList();
             List<String> office = new ArrayList();
             List<String> role = new ArrayList();
             
-            //Gå igenom alla teknik och spara i en array istället
+            //Loops for putting objects into one array, instead of multiple arrays in json later
             for (Technology t : e.getTechnologies()) 
                 tech.add(t.getTechnology());
 
@@ -50,7 +48,7 @@ public class EmployeeService implements IEmployeeService {
             for (Role r : e.getRole()) 
                 role.add(r.getRole());
             
-            //Mappa sen returnera
+            //Map instead of actual dbclass (with map we can customize)
             em.add(new EmployeeDataMap(e.getId(),
                     e.getFirstName(),
                     e.getLastName(),
@@ -65,19 +63,15 @@ public class EmployeeService implements IEmployeeService {
 
     @Override
     public List<EmployeeDataMap> findAll() {
-
-        //Ny array av mappningen
         List<EmployeeDataMap> em = new ArrayList();
 
-        //Hämta alla employees
         for (Employee e : repository.findAll(Sort.by(Sort.Direction.ASC, "id"))) {
             
-            //Array för tech och office
             List<String> tech = new ArrayList();
             List<String> office = new ArrayList();
             List<String> role = new ArrayList();
             
-            //Gå igenom alla teknik och spara i en array istället
+             //Loops for putting objects into one array, instead of multiple arrays in json later
             for (Technology t : e.getTechnologies()) 
                 tech.add(t.getTechnology());
 
@@ -87,7 +81,7 @@ public class EmployeeService implements IEmployeeService {
             for (Role r : e.getRole()) 
                 role.add(r.getRole());
             
-            //Mappa sen returnera
+            //Map instead of actual dbclass (with map we can customize)
             em.add(new EmployeeDataMap(e.getId(),
                     e.getFirstName(),
                     e.getLastName(),
@@ -102,39 +96,28 @@ public class EmployeeService implements IEmployeeService {
 
     @Override
     public List<EmployeeDataMapNoArrays> findAllNoArrays() {
-
-        //Ny array av mappningen
         List<EmployeeDataMapNoArrays> em = new ArrayList();
 
-        //Hämta alla employees
         for (Employee e : repository.findAll(Sort.by(Sort.Direction.ASC, "id")))
         {
+            //Our client requires id to start from 0
             e.setId(e.getId()-1);
-            //Array för tech och office
+
             String tech = "";
             String office = "";
             String role = "";
             
-            //Gå igenom alla teknik och spara i en array istället
+             //Loops for putting objects into one String instead of array with objects
             for (Technology t : e.getTechnologies()) 
-                if (tech.length() == 0) 
-                    tech += t.getTechnology();
-                else
-                    tech += "," + t.getTechnology();
+                tech += (tech.length() == 0 ? t.getTechnology() : "," + t.getTechnology());
 
             for (Office o : e.getOffice()) 
-                if (office.length() == 0) 
-                    office += o.getOffice();
-                else
-                    office += "," + o.getOffice();
+                office += (office.length() == 0 ? o.getOffice() : "," + o.getOffice());
             
             for (Role r : e.getRole()) 
-                if (role.length() == 0)
-                    role += r.getRole();
-                else
-                    role += "," + r.getRole();
+                role += (role.length() == 0 ? r.getRole() : "," + r.getRole());
             
-            //Mappa sen returnera
+            //Map instead of actual dbclass (with map we can customize)
             em.add(new EmployeeDataMapNoArrays(e.getId(),
                     e.getFirstName(),
                     e.getLastName(),
