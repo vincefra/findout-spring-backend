@@ -35,7 +35,7 @@ Swagger UI: http://localhost:7878/api/swagger-ui.html
 
 DB console is available at http://localhost:9081/ with default settings:
 - System: PostgreSQL
-- server: postgres
+- server: postgres:5432
 - username: postgres
 - password: password
 - Database: postgres
