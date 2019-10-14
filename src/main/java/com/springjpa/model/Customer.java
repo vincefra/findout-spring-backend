@@ -96,5 +96,4 @@ public class Customer implements Serializable {
     public void setCategory(List<Category> category) {
         this.category = category;
     } 
-
 }

@@ -6,7 +6,6 @@
 package com.springjpa.service;
 
 import com.springjpa.model.CustomerDataMap;
-import com.springjpa.model.CustomerDataMapNoArrays;
 import java.util.List;
 
 /**
@@ -15,6 +14,5 @@ import java.util.List;
  */
 public interface ICustomerService {
     public List<CustomerDataMap> findAll();
-    public List<CustomerDataMapNoArrays> findAllNoArrays();
-    public List<CustomerDataMap> findAllArraysFromIdZero();
+    public List<CustomerDataMap> findAllStartIdZero();
 }

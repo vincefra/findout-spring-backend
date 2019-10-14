@@ -7,6 +7,6 @@ import java.util.List;
 public interface IProjectService {
     public List<ProjectDataMap> findAll();
     public List<ProjectDataMapNoArrays> findAllNoArrays();
-    public List<ProjectDataMap> findAllArraysIdZero();
+    public List<ProjectDataMap> findAllStartIdZero();
     public long getTotalProjects();
 }

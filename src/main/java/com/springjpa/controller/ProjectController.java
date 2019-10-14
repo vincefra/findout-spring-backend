@@ -1,7 +1,6 @@
 package com.springjpa.controller;
 
 import com.springjpa.model.Project.ProjectDataMap;
-import com.springjpa.model.Project.ProjectDataMapNoArrays;
 import com.springjpa.service.IProjectService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,8 +27,8 @@ public class ProjectController {
     }
 
     @RequestMapping("/all/zero")
-    ResponseEntity<List<ProjectDataMap>> findAllArraysIdZero() {
-        return ResponseEntity.ok(projectService.findAllArraysIdZero());
+    ResponseEntity<List<ProjectDataMap>> getAllProjectsStartIdZero() {
+        return ResponseEntity.ok(projectService.findAllStartIdZero());
     }
     
     @RequestMapping("/total")

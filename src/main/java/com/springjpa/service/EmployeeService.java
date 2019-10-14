@@ -2,7 +2,6 @@ package com.springjpa.service;
 
 import com.springjpa.model.Employee.Employee;
 import com.springjpa.model.Employee.EmployeeDataMap;
-import com.springjpa.model.Employee.EmployeeDataMapNoArrays;
 import com.springjpa.model.Office;
 import com.springjpa.model.Role;
 import com.springjpa.model.Technology;
@@ -25,7 +24,7 @@ public class EmployeeService implements IEmployeeService {
     }
     
     @Override
-    public List<EmployeeDataMap> findAllArraysIdZero() {
+    public List<EmployeeDataMap> findAllStartIdZero() {
         List<EmployeeDataMap> em = new ArrayList();
 
         //findAll(Sort by id, ASC)
@@ -93,48 +92,7 @@ public class EmployeeService implements IEmployeeService {
         }
         return em;
     }
-
-    @Override
-    public List<EmployeeDataMapNoArrays> findAllNoArrays() {
-        List<EmployeeDataMapNoArrays> em = new ArrayList();
-
-        for (Employee e : repository.findAll(Sort.by(Sort.Direction.ASC, "id")))
-        {
-            //Our client requires id to start from 0
-            e.setId(e.getId()-1);
-
-            String tech = "";
-            String office = "";
-            String role = "";
-            
-             //Loops for putting objects into one String instead of array with objects
-            for (Technology t : e.getTechnologies()) 
-                tech += (tech.length() == 0 ? t.getTechnology() : "," + t.getTechnology());
-
-            for (Office o : e.getOffice()) 
-                office += (office.length() == 0 ? o.getOffice() : "," + o.getOffice());
-            
-            for (Role r : e.getRole()) 
-                role += (role.length() == 0 ? r.getRole() : "," + r.getRole());
-            
-            //Map instead of actual dbclass (with map we can customize)
-            em.add(new EmployeeDataMapNoArrays(e.getId(),
-                    e.getFirstName(),
-                    e.getLastName(),
-                    role,
-                    e.getBirthYear(),
-                    e.getWorkingyears().get(0).getStartYear(),
-                    e.getWorkingyears().get(0).getEndYear() > 1 ? e.getWorkingyears().get(0).getEndYear() : Year.now().getValue(), office,
-                    tech));
-        }
-        return em;
-    }
     
-    @Override
-    public List<Employee> findAllTest() {
-        return (List<Employee>) repository.findAll(Sort.by(Sort.Direction.ASC, "id"));
-    }
-
     @Override
     public Employee findById(long id) {
         return (Employee) repository.findById(id).get();

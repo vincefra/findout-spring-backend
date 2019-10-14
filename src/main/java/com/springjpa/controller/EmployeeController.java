@@ -24,8 +24,8 @@ public class EmployeeController {
     }
     
     @RequestMapping("/all/zero")
-    ResponseEntity<List<EmployeeDataMap>> findAllArraysIdZero() {
-        return ResponseEntity.ok(employeeService.findAllArraysIdZero());
+    ResponseEntity<List<EmployeeDataMap>> getAllEmployeesStartIdZero() {
+        return ResponseEntity.ok(employeeService.findAllStartIdZero());
     }
 
     @RequestMapping("/findbyid")
