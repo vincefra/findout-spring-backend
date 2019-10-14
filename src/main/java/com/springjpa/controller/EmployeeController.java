@@ -19,17 +19,12 @@ public class EmployeeController {
     @Autowired
     private IEmployeeService employeeService;
 
-    @RequestMapping("/findall")
+    @RequestMapping("/all")
     ResponseEntity<List<EmployeeDataMap>> getAllEmployees() {
         return ResponseEntity.ok(employeeService.findAll());
     }
     
-    @RequestMapping("/findallnoarray")
-    ResponseEntity<List<EmployeeDataMapNoArrays>> getAllEmployeesNoArrays() {
-        return ResponseEntity.ok(employeeService.findAllNoArrays());
-    }
-    
-    @RequestMapping("/findallarrayzero")
+    @RequestMapping("/all/zero")
     ResponseEntity<List<EmployeeDataMap>> findAllArraysIdZero() {
         return ResponseEntity.ok(employeeService.findAllArraysIdZero());
     }

@@ -22,19 +22,19 @@ public class ProjectController {
     @Autowired
     private IProjectService projectService;
  
-    @RequestMapping("/findall")
+    @RequestMapping("/all")
     ResponseEntity<List<ProjectDataMap>> getAllProjects() {
         return ResponseEntity.ok(projectService.findAll());
     }
-    
-    @RequestMapping("/findallnoarray")
-    ResponseEntity<List<ProjectDataMapNoArrays>> getAllProjectsNoArrays() {
-        return ResponseEntity.ok(projectService.findAllNoArrays());
-    }
-    
-    @RequestMapping("/findallarrayzero")
+
+    @RequestMapping("/all/zero")
     ResponseEntity<List<ProjectDataMap>> findAllArraysIdZero() {
         return ResponseEntity.ok(projectService.findAllArraysIdZero());
+    }
+    
+    @RequestMapping("/total")
+    ResponseEntity<Long> getTotalProjects() {
+        return ResponseEntity.ok(projectService.getTotalProjects());
     }
     
     @GetMapping("/ping")

@@ -20,17 +20,12 @@ public class CustomerController {
     @Autowired
     private ICustomerService customerService;
     
-    @RequestMapping("/findall")
+    @RequestMapping("/all")
     ResponseEntity<List<CustomerDataMap>> getAllCustomers() {
         return ResponseEntity.ok(customerService.findAll());
     }
     
-    @RequestMapping("/findallnoarray")
-    ResponseEntity<List<CustomerDataMapNoArrays>> getAllCustomersNoArrays() {
-        return ResponseEntity.ok(customerService.findAllNoArrays());
-    }
-    
-    @RequestMapping("/findallarrayzero")
+    @RequestMapping("/all/zero")
     ResponseEntity<List<CustomerDataMapNoArrays>> getAllCustomersArraysIdZero() {
         return ResponseEntity.ok(customerService.findAllNoArrays());
     }

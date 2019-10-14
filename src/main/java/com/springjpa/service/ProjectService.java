@@ -22,6 +22,11 @@ public class ProjectService implements IProjectService {
     public ProjectService(ProjectRepository repository) {
         this.repository = repository;
     }
+    
+    @Override
+    public long getTotalProjects() {
+        return repository.count();
+    }
 
     @Override
     public List<ProjectDataMap> findAll() {

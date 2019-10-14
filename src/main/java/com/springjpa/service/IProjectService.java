@@ -8,4 +8,5 @@ public interface IProjectService {
     public List<ProjectDataMap> findAll();
     public List<ProjectDataMapNoArrays> findAllNoArrays();
     public List<ProjectDataMap> findAllArraysIdZero();
+    public long getTotalProjects();
 }
