@@ -18,6 +18,11 @@ If running Docker from Ubuntu on Windows, make sure to update base mount point i
 ### Run integration tests using pre-running docker DB
 `mvn integrationTest`  [TBD]
 
+## Problem (?)
+Try running this command:
+
+### Run this command to remove docker-builds
+`docker-compose down`
 
 ## Accessing the application
 `docker-compose up --build`
