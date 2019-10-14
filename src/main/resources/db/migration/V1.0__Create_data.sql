@@ -28,7 +28,6 @@ CREATE TABLE "employee" (
  "visible" int4 --if the employee wants to be visible (1) or not (0)
 )
 ;
-ALTER TABLE "employee" OWNER TO "postgres";
 
 -- ----------------------------
 -- Table structure for customer
@@ -37,12 +36,10 @@ DROP TABLE IF EXISTS "customer";
 CREATE TABLE "customer" (
   "id" SERIAL PRIMARY KEY,
   "name" varchar(100) COLLATE "pg_catalog"."default",
-  "category" varchar(100) COLLATE "pg_catalog"."default",
   "description" varchar(100) COLLATE "pg_catalog"."default",
   "visible" int4 NOT NULL
 )
 ;
-ALTER TABLE "customer" OWNER TO "postgres";
 
 -- ----------------------------
 -- Table structure for location
@@ -75,7 +72,6 @@ CREATE TABLE "office" (
   "office" varchar(255) COLLATE "pg_catalog"."default"
 )
 ;
-ALTER TABLE "office" OWNER TO "postgres";
 
 -- ----------------------------
 -- Table structure for employeeoffice
@@ -86,7 +82,6 @@ CREATE TABLE "employeeoffice" (
  "officeid" int4 REFERENCES office(id)
 )
 ;
-ALTER TABLE "employeeoffice" OWNER TO "postgres";
 
 -- ----------------------------
 -- Table structure for technology
@@ -132,7 +127,6 @@ CREATE TABLE "project" (
   "description" varchar COLLATE "pg_catalog"."default"
 )
 ;
-ALTER TABLE "project" OWNER TO "postgres";
 
 -- ----------------------------
 -- Table structure for projectcustomer
@@ -143,19 +137,17 @@ CREATE TABLE "projectcustomer" (
   "customerid" int4
 )
 ;
-ALTER TABLE "projectcustomer" OWNER TO "postgres";
 
 -- ----------------------------
 -- Table structure for projecttechnology
 -- ----------------------------
 DROP TABLE IF EXISTS "projecttechnology";
-CREATE TABLE "public"."projecttechnology" (
+CREATE TABLE "projecttechnology" (
   "id" SERIAL PRIMARY KEY,
   "projectid" int4,
   "technologyid" int4
 )
 ;
-ALTER TABLE "projecttechnology" OWNER TO "postgres";
 
 -- ----------------------------
 -- Table structure for projectemployee
@@ -166,7 +158,6 @@ CREATE TABLE "projectemployee" (
   "employeeid" int4 REFERENCES employee(id)
 )
 ;
-ALTER TABLE "projectemployee" OWNER TO "postgres";
 
 -- ----------------------------
 -- Table structure for projecttime
@@ -180,7 +171,6 @@ CREATE TABLE "projecttime" (
 )
 ;
 
-
 -- ----------------------------
 -- Table structure for role
 -- ----------------------------
@@ -190,7 +180,6 @@ CREATE TABLE "role" (
   "role" varchar COLLATE "pg_catalog"."default"
 )
 ;
-ALTER TABLE "role" OWNER TO "postgres";
 
 -- ----------------------------
 -- Table structure for employeerole
@@ -201,7 +190,6 @@ CREATE TABLE "employeerole" (
  "roleid" int4 REFERENCES role(id)
 )
 ;
-ALTER TABLE "employeerole" OWNER TO "postgres";
 
 -- ----------------------------
 -- Table structure for Category
@@ -212,7 +200,6 @@ CREATE TABLE "category" (
  "category" varchar COLLATE "pg_catalog"."default"
 )
 ;
-ALTER TABLE "category" OWNER TO "postgres";
 
 -- ----------------------------
 -- Table structure for CustomerCategory
@@ -223,7 +210,8 @@ CREATE TABLE "customercategory" (
  "categoryid" int4 REFERENCES category(id)
 )
 ;
-ALTER TABLE "customercategory" OWNER TO "postgres"; 
+
+/*ALTER TABLE "customercategory" OWNER TO "postgres"; 
 /*
 -- ----------------------------
 -- Primary Key structure for table customer
