@@ -1,7 +1,6 @@
 package com.springjpa.controller;
 
 import com.springjpa.model.CustomerDataMap;
-import com.springjpa.model.CustomerDataMapNoArrays;
 import com.springjpa.service.ICustomerService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +25,7 @@ public class CustomerController {
     }
     
     @RequestMapping("/all/zero")
-    ResponseEntity<List<CustomerDataMapNoArrays>> getAllCustomersArraysIdZero() {
-        return ResponseEntity.ok(customerService.findAllNoArrays());
+    ResponseEntity<List<CustomerDataMap>> getAllCustomersStartIdZero() {
+        return ResponseEntity.ok(customerService.findAllStartIdZero());
     }
 }
