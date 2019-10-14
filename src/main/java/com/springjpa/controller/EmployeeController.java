@@ -1,7 +1,6 @@
 package com.springjpa.controller;
 import com.springjpa.model.Employee.Employee;
 import com.springjpa.model.Employee.EmployeeDataMap;
-import com.springjpa.model.Employee.EmployeeDataMapNoArrays;
 import com.springjpa.service.IEmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
