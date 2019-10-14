@@ -31,6 +31,8 @@ The backend server is available at http://localhost:7878/api/
 
 Sample call: http://localhost:7878/api/ping
 
+Swagger UI: http://localhost:7878/api/swagger-ui.html
+
 DB console is available at http://localhost:9081/ with default settings:
 - System: PostgreSQL
 - server: postgres
