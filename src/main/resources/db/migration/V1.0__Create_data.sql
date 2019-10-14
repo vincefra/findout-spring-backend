@@ -97,18 +97,17 @@ CREATE TABLE "technology" (
   "technology" varchar COLLATE "pg_catalog"."default"
 )
 ;
-ALTER TABLE "technology" OWNER TO "postgres";
 
 -- ----------------------------
 -- Table structure for employeetech
 -- ----------------------------
-DROP TABLE IF EXISTS "employeetech";
-CREATE TABLE "employeetech" (
- "employeeid" int4 REFERENCES employee(id) ,
- "technologyid" int4 REFERENCES technology(id)
+DROP TABLE IF EXISTS "employeetechnology";
+CREATE TABLE "employeetechnology" (
+  "id" SERIAL PRIMARY KEY,
+  "employeeid" int4,
+  "technologyid" int4
 )
 ;
-ALTER TABLE "employeetech" OWNER TO "postgres";
 
 -- ----------------------------
 -- Table structure for employeetime
@@ -121,7 +120,6 @@ CREATE TABLE "employeetime" (
  "yearout" int4 NOT NULL
 )
 ;
-ALTER TABLE "employeetime" OWNER TO "postgres";
 
 -- ----------------------------
 -- Table structure for project
@@ -148,15 +146,16 @@ CREATE TABLE "projectcustomer" (
 ALTER TABLE "projectcustomer" OWNER TO "postgres";
 
 -- ----------------------------
--- Table structure for projectechnology
+-- Table structure for projecttechnology
 -- ----------------------------
-DROP TABLE IF EXISTS "projectechnology";
-CREATE TABLE "projectechnology" (
-  "projectid" int4 REFERENCES project(id),
-  "technologyid" int4 REFERENCES technology(id)
+DROP TABLE IF EXISTS "projecttechnology";
+CREATE TABLE "public"."projecttechnology" (
+  "id" SERIAL PRIMARY KEY,
+  "projectid" int4,
+  "technologyid" int4
 )
 ;
-ALTER TABLE "projectechnology" OWNER TO "postgres";
+ALTER TABLE "projecttechnology" OWNER TO "postgres";
 
 -- ----------------------------
 -- Table structure for projectemployee
