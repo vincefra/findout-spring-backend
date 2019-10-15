@@ -9,4 +9,5 @@ public interface IProjectService {
     public List<ProjectDataMapNoArrays> findAllNoArrays();
     public List<ProjectDataMap> findAllStartIdZero();
     public long getTotalProjects();
+    public String sendTest();
 }

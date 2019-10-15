@@ -27,6 +27,12 @@ public class ProjectService implements IProjectService {
     public long getTotalProjects() {
         return repository.count();
     }
+    
+    @Override
+    public String sendTest() {
+        return "Admin, 123";
+    }
+
 
     @Override
     public List<ProjectDataMap> findAll() {
