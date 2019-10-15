@@ -28,10 +28,10 @@ public class UserController {
 
     @PostMapping("/auth")
     ResponseEntity<String> tryLogin(@RequestBody String username, String password) {
-        if (username.equalsIgnoreCase("toshiko")) {
+        if (username.equalsIgnoreCase("toshiko") && password.equalsIgnoreCase("123")) 
             return ResponseEntity.ok("yes");
-        } else {
+        else 
             return ResponseEntity.ok("No");
-        }
+        
     }
 }
