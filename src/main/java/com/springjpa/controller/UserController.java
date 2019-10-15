@@ -10,7 +10,9 @@ import com.springjpa.model.User;
 import com.springjpa.service.IProjectService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,6 +29,7 @@ public class UserController {
     @Autowired
     private IProjectService projectService;
 
+    @CrossOrigin(origins = { "http://localhost:8080" }, allowCredentials = "false")
     @PostMapping("/auth")
     ResponseEntity<String> tryLogin(@RequestBody User user) {
         if (user.getUsername().equalsIgnoreCase("toshiko") && user.getPassword().equalsIgnoreCase("123")) 
