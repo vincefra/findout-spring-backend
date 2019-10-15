@@ -27,8 +27,8 @@ public class UserController {
     private IProjectService projectService;
 
     @PostMapping("/auth")
-    ResponseEntity<String> tryLogin(@RequestBody String username) {
-        if (username.equalsIgnoreCase("admin")) {
+    ResponseEntity<String> tryLogin(@RequestBody String username, String password) {
+        if (username.equalsIgnoreCase("toshiko")) {
             return ResponseEntity.ok("yes");
         } else {
             return ResponseEntity.ok("No");
