@@ -6,6 +6,7 @@
 package com.springjpa.controller;
 
 import com.springjpa.model.CustomerDataMap;
+import com.springjpa.model.User;
 import com.springjpa.service.IProjectService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,11 +28,10 @@ public class UserController {
     private IProjectService projectService;
 
     @PostMapping("/auth")
-    ResponseEntity<String> tryLogin(@RequestBody String username, String password) {
-        if (username.equalsIgnoreCase("toshiko") && password.equalsIgnoreCase("123")) 
-            return ResponseEntity.ok("yes" + username + " " + password);
+    ResponseEntity<String> tryLogin(@RequestBody User user) {
+        if (user.getUsername().equalsIgnoreCase("toshiko") && user.getPassword().equalsIgnoreCase("123")) 
+            return ResponseEntity.ok("Welcome " + user.getUsername() + "!");
         else 
-            return ResponseEntity.ok("No" + username + " - " + password);
-        
+            return ResponseEntity.ok("Go away! " + user.getUsername() + "!");
     }
 }

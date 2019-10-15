@@ -1,7 +1,5 @@
 package com.springjpa.model.Employee;
 
-import com.springjpa.model.Office;
-import com.springjpa.model.Technology;
 import java.util.List;
 
 public class EmployeeDataMap {
