@@ -31,10 +31,14 @@ public class UserController {
 
     @CrossOrigin(origins = { "http://localhost:8080" }, allowCredentials = "false")
     @PostMapping("/auth")
-    ResponseEntity<String> tryLogin(@RequestBody User user) {
+    ResponseEntity<User> tryLogin(@RequestBody User user) {
         if (user.getUsername().equalsIgnoreCase("toshiko") && user.getPassword().equalsIgnoreCase("123")) 
-            return ResponseEntity.ok("Welcome " + user.getUsername() + "!");
+        {
+            long id = 1;
+            user.setId(id);
+            return ResponseEntity.ok(user);
+        }
         else 
-            return ResponseEntity.ok("Go away! " + user.getUsername() + "!");
+            return ResponseEntity.ok(null);
     }
 }
