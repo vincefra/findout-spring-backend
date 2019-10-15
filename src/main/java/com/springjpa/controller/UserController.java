@@ -35,6 +35,8 @@ public class UserController {
         if (user.getUsername().equalsIgnoreCase("toshiko") && user.getPassword().equalsIgnoreCase("123")) 
         {
             long id = 1;
+            user.setFirstName("Eren");
+            user.setLastName("Saitama");
             user.setId(id);
             return ResponseEntity.ok(user);
         }
