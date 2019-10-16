@@ -29,7 +29,7 @@ public class UserController {
     @Autowired
     private IProjectService projectService;
 
-    @CrossOrigin(origins = { "http://localhost:8080" }, allowCredentials = "false")
+    @CrossOrigin(origins = { "http://localhost:3000" }, allowCredentials = "false")
     @PostMapping("/auth")
     ResponseEntity<User> tryLogin(@RequestBody User user) {
         if (user.getUsername().equalsIgnoreCase("toshiko") && user.getPassword().equalsIgnoreCase("123")) 
