@@ -3,9 +3,6 @@
 -- ----------------------------
 -- Records of projectemployee
 -- ----------------------------
-BEGIN;
-ALTER TABLE "employee" ADD description varchar(1000) COLLATE "pg_catalog"."default";
-COMMIT;
 
 BEGIN;
 UPDATE "employee"
