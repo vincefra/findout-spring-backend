@@ -28,7 +28,7 @@ public class EmployeeController {
         return ResponseEntity.ok(employeeService.findAllStartIdZero());
     }
 
-    @RequestMapping("/id")
+    @RequestMapping("")
     ResponseEntity<EmployeePageMap> getEmployeePageById(@RequestParam("id") long id) {
         EmployeePageMap e = employeeService.findEmployeePageById(id);
         return ResponseEntity.ok(e);

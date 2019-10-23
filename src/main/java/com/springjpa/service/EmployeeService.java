@@ -128,14 +128,12 @@ public class EmployeeService implements IEmployeeService {
             office.add(o.getOffice());
         }
 
-        //Till projekt category för klient och projekt, lägg till other om klient, kategori ej finns
-        System.out.println(getTechnologyCategories(e.getTechnologies()).entrySet().toString());
-
         EmployeePageMap epm = new EmployeePageMap(
                 e.getId() - 1, //-1 since client start from 0
                 e.getFirstName(),
                 e.getLastName(),
                 role,
+                e.getDescription(),
                 office,
                 getTechnologyCategories(e.getTechnologies()),
                 projectService.findAllProjectsByEmployee(id + 1));

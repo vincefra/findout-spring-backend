@@ -35,6 +35,9 @@ public class Employee implements Serializable {
 
     @Column(name = "birthyear")
     private int birthYear;
+    
+    @Column(name = "description")
+    private String description;
 
     @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
     @JoinTable(name = "employeerole",
@@ -154,7 +157,12 @@ public class Employee implements Serializable {
     public void setVisible(int visible) {
         this.visible = visible;
     }
-    
-    
-    
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 }
