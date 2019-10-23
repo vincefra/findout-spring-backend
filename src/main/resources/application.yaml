@@ -53,7 +53,7 @@ spring:
         password: 123456
 
     flyway: 
-        enabled: true
+        enabled: false
 
 
 

@@ -1,36 +1,29 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.springjpa.model.Project;
+
+import java.util.List;
 
 /**
  *
  * @author work
  */
-public class ProjectDataMapNoArrays {
+public class ProjectEmployeeMap {
     
     private long id;
     private String name;
-    private String type;
     private String startDates;
     private String endDates;
     private String client;
-    private String employees;
     private String description;
-    private String technologies;
+    private String category;
 
-    public ProjectDataMapNoArrays(long id, String name, String type, String startDates, String endDates, String client, String employees, String description, String technologies) {
+    public ProjectEmployeeMap(long id, String name, String startDates, String endDates, String client, String description, String category) {
         this.id = id;
         this.name = name;
-        this.type = type;
         this.startDates = startDates;
         this.endDates = endDates;
         this.client = client;
-        this.employees = employees;
         this.description = description;
-        this.technologies = technologies;
+        this.category = category;
     }
 
     public long getId() {
@@ -47,14 +40,6 @@ public class ProjectDataMapNoArrays {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
     }
 
     public String getStartDates() {
@@ -81,14 +66,6 @@ public class ProjectDataMapNoArrays {
         this.client = client;
     }
 
-    public String getEmployees() {
-        return employees;
-    }
-
-    public void setEmployees(String employees) {
-        this.employees = employees;
-    }
-
     public String getDescription() {
         return description;
     }
@@ -97,14 +74,11 @@ public class ProjectDataMapNoArrays {
         this.description = description;
     }
 
-    public String getTechnologies() {
-        return technologies;
+    public String getCategory() {
+        return category;
     }
 
-    public void setTechnologies(String technologies) {
-        this.technologies = technologies;
-    }
-    
-    
-    
+    public void setCategory(String category) {
+        this.category = category;
+    }  
 }

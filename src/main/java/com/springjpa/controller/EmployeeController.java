@@ -1,6 +1,6 @@
 package com.springjpa.controller;
-import com.springjpa.model.Employee.Employee;
 import com.springjpa.model.Employee.EmployeeDataMap;
+import com.springjpa.model.Employee.EmployeePageMap;
 import com.springjpa.service.IEmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -28,9 +28,9 @@ public class EmployeeController {
         return ResponseEntity.ok(employeeService.findAllStartIdZero());
     }
 
-    @RequestMapping("/findbyid")
-    ResponseEntity<Employee> getEmployee(@RequestParam("id") long id) {
-        Employee e = employeeService.findById(id);
+    @RequestMapping("/id")
+    ResponseEntity<EmployeePageMap> getEmployeePageById(@RequestParam("id") long id) {
+        EmployeePageMap e = employeeService.findEmployeePageById(id);
         return ResponseEntity.ok(e);
     }
 

@@ -1,13 +1,12 @@
 package com.springjpa.service;
 
 import com.springjpa.model.Project.ProjectDataMap;
-import com.springjpa.model.Project.ProjectDataMapNoArrays;
+import com.springjpa.model.Project.ProjectEmployeeMap;
 import java.util.List;
 
 public interface IProjectService {
     public List<ProjectDataMap> findAll();
-    public List<ProjectDataMapNoArrays> findAllNoArrays();
     public List<ProjectDataMap> findAllStartIdZero();
     public long getTotalProjects();
-    public String sendTest();
+    public List<ProjectEmployeeMap> findAllProjectsByEmployee(long id);
 }
