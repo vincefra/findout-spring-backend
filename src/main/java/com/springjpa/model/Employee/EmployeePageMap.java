@@ -19,15 +19,18 @@ public class EmployeePageMap {
     private String firstName;
     private String lastName;
     private List<String> role;
+    private String description;
     private List<String> location;
     private HashMap<String, List<String>> technologies;
     private List<ProjectEmployeeMap> projects;
     
-    public EmployeePageMap(long id, String firstName, String lastName, List<String> role, List<String> location, HashMap<String, List<String>> technologies, List<ProjectEmployeeMap> projects) {
+
+    public EmployeePageMap(long id, String firstName, String lastName, List<String> role, String description, List<String> location, HashMap<String, List<String>> technologies, List<ProjectEmployeeMap> projects) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.role = role;
+        this.description = description;
         this.location = location;
         this.technologies = technologies;
         this.projects = projects;
@@ -87,5 +90,13 @@ public class EmployeePageMap {
 
     public void setProjects(List<ProjectEmployeeMap> projects) {
         this.projects = projects;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }
