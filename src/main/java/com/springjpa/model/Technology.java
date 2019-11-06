@@ -1,6 +1,7 @@
 package com.springjpa.model;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,7 +10,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.JoinTable;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -25,9 +27,13 @@ public class Technology implements Serializable {
     @Column(name = "technology")
     private String technology;
     
-    @OneToOne(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
-    @JoinColumn(name = "categoryid", referencedColumnName="id")
-    private CategoryTechnology categorytechnology;
+    /*@OneToOne(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
+    @JoinColumn(name = "categoryid", referencedColumnName="id")*/
+    @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
+    @JoinTable(name = "technologycategory",
+            joinColumns = { @JoinColumn(name = "technologyid", referencedColumnName = "id") },
+            inverseJoinColumns = { @JoinColumn(name = "categoryid", referencedColumnName = "id") })
+    private List<CategoryTechnology> categorytechnology;
     
     public String getTechnology() {
         return technology;
@@ -45,11 +51,11 @@ public class Technology implements Serializable {
         this.id = id;
     }
 
-    public CategoryTechnology getCategorytechnology() {
+    public List<CategoryTechnology> getCategorytechnology() {
         return categorytechnology;
     }
 
-    public void setCategorytechnology(CategoryTechnology categorytechnology) {
+    public void setCategorytechnology(List<CategoryTechnology> categorytechnology) {
         this.categorytechnology = categorytechnology;
     }
 }

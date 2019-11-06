@@ -137,6 +137,7 @@ public class EmployeeService implements IEmployeeService {
                 office,
                 getTechnologyCategories(e.getTechnologies()),
                 projectService.findAllProjectsByEmployee(id + 1));
+                //id+1 since db starts from 1
 
         return epm;
     }
@@ -145,18 +146,41 @@ public class EmployeeService implements IEmployeeService {
         HashMap<String, List<String>> techs = new HashMap<>();
 
         for (Technology t : tech) {
-            techs.putIfAbsent(t.getCategorytechnology().getCategory(), null);
+            if (!t.getCategorytechnology().isEmpty())
+                techs.putIfAbsent(t.getCategorytechnology().get(0).getCategory(), null);
         }
 
         for (Technology t : tech) {
-            upsertValue(t.getCategorytechnology().getCategory(), t.getTechnology(), techs);
+            if (!t.getCategorytechnology().isEmpty())
+                upsertValue(t.getCategorytechnology().get(0).getCategory(), t.getTechnology(), techs);
         }
 
         return techs;
+        
+        
+        /*
+                
+        //Loop through categories to put into hashmap
+        for (Technology t : tech) {
+            //Loop through tech that has multiple categories
+            for (CategoryTechnology ct : t.getCategorytechnology())
+                techs.putIfAbsent(ct.getCategory(), null);
+        }
+
+        //Loop through categories to put tech into them
+        for (Technology t : tech) {
+            for (CategoryTechnology ct : t.getCategorytechnology())
+                upsertValue(ct.getCategory(), t.getTechnology(), techs);
+        }
+
+        return techs;
+        */
+        
     }
 
     private static void upsertValue(String key, String value, HashMap<String, List<String>> techniques) {
         List<String> existing = techniques.get(key);
+
         if (existing == null) {
             existing = new ArrayList<>();
             techniques.put(key, existing);

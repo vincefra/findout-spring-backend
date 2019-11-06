@@ -11,10 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-/**
- *
- * @author work
- */
 @Service
 public class CustomerService implements ICustomerService {
 
@@ -55,7 +51,7 @@ public class CustomerService implements ICustomerService {
         //New map for customerdata
         List<CustomerDataMap> cm = new ArrayList();
 
-        //Sort by id, added in crud Sort sort
+        //Sort by id, added in crud Sort
         for (Customer c : repository.findAll(Sort.by(Sort.Direction.ASC, "id"))) {
 
             //our client requires id to start from 0

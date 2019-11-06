@@ -54,7 +54,7 @@ public class Employee implements Serializable {
             joinColumns = { @JoinColumn(name = "employeeid", referencedColumnName = "id") },
             inverseJoinColumns = { @JoinColumn(name = "technologyid", referencedColumnName = "id") })
     private List<Technology> technologies;
-
+        
     /*
     @OneToMany(cascade=CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinTable(name="employeetime", joinColumns={@JoinColumn(name="employeeid", referencedColumnName="id")})*/

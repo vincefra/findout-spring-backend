@@ -47,13 +47,13 @@ spring:
     profiles: develop 
 
     datasource.url: 
-        jdbc:postgresql://localhost:5432/findout-migrate-new2
+        jdbc:postgresql://localhost:5432/findout-migrate-new3
     datasource:
         username: postgres
         password: 123456
 
     flyway: 
-        enabled: false
+        enabled: true
 
 
 
