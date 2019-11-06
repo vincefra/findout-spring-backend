@@ -8,10 +8,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-/**
- *
- * @author work
- */
 @Entity
 @Table(name = "categorytechnology")
 public class CategoryTechnology implements Serializable {

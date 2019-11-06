@@ -48,18 +48,12 @@ public class Employee implements Serializable {
     @Column(name = "visible")
     private int visible;
     
-    //ManyTomany
     @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
     @JoinTable(name = "employeetechnology",
             joinColumns = { @JoinColumn(name = "employeeid", referencedColumnName = "id") },
             inverseJoinColumns = { @JoinColumn(name = "technologyid", referencedColumnName = "id") })
     private List<Technology> technologies;
-        
-    /*
-    @OneToMany(cascade=CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinTable(name="employeetime", joinColumns={@JoinColumn(name="employeeid", referencedColumnName="id")})*/
-    //@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    
+
     @OneToMany
     @JoinColumn(name = "employeeid", referencedColumnName="id")
     private List<EmployeeTime> workingyears;
@@ -69,23 +63,7 @@ public class Employee implements Serializable {
             joinColumns = { @JoinColumn(name = "employeeid", referencedColumnName = "id") },
             inverseJoinColumns = { @JoinColumn(name = "officeid", referencedColumnName = "id") })
     private List<Office> office;
-    
-    /*
-    protected Employee() {
-    }
 
-    public Employee(String firstName, String lastName, int birthyear) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.birthYear = birthyear;
-    }
-    */
-    /*
-    @Override
-    public String toString() {
-        return String.format("EmployeeId=%d, Name='%s', Lastname='%s'], Birthyear='%s']", id, firstName, lastName, birthYear);
-    }
-*/
     public long getId() {
         return id;
     }

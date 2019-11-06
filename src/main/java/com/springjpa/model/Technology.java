@@ -27,8 +27,6 @@ public class Technology implements Serializable {
     @Column(name = "technology")
     private String technology;
     
-    /*@OneToOne(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
-    @JoinColumn(name = "categoryid", referencedColumnName="id")*/
     @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
     @JoinTable(name = "technologycategory",
             joinColumns = { @JoinColumn(name = "technologyid", referencedColumnName = "id") },

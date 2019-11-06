@@ -14,10 +14,6 @@ import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-/**
- *
- * @author work
- */
 @Entity
 @Table(name = "customer")
 public class Customer implements Serializable {

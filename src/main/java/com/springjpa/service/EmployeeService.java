@@ -136,8 +136,7 @@ public class EmployeeService implements IEmployeeService {
                 e.getDescription(),
                 office,
                 getTechnologyCategories(e.getTechnologies()),
-                projectService.findAllProjectsByEmployee(id + 1));
-                //id+1 since db starts from 1
+                projectService.findAllProjectsByEmployee(id + 1)); //id+1
 
         return epm;
     }
@@ -154,9 +153,7 @@ public class EmployeeService implements IEmployeeService {
             if (!t.getCategorytechnology().isEmpty())
                 upsertValue(t.getCategorytechnology().get(0).getCategory(), t.getTechnology(), techs);
         }
-
         return techs;
-        
         
         /*
                 
@@ -175,7 +172,6 @@ public class EmployeeService implements IEmployeeService {
 
         return techs;
         */
-        
     }
 
     private static void upsertValue(String key, String value, HashMap<String, List<String>> techniques) {

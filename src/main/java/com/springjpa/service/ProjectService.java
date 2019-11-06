@@ -52,7 +52,15 @@ public class ProjectService implements IProjectService {
                 technologies.add(t.getTechnology());
             }
             
-            cfp.add(new ProjectDataMap(p.getId(), p.getName(), p.getType(), p.getProjecttime().get(0).getStartDates(), p.getProjecttime().get(0).getEndDates(), customers, employees, p.getDescription(), technologies));
+            cfp.add(new ProjectDataMap(p.getId(), 
+                    p.getName(), 
+                    p.getType(), 
+                    p.getProjecttime().get(0).getStartDates(), 
+                    p.getProjecttime().get(0).getEndDates(), 
+                    customers, 
+                    employees, 
+                    p.getDescription(), 
+                    technologies));
         }
         return cfp;
     }
@@ -60,8 +68,6 @@ public class ProjectService implements IProjectService {
     @Override
     public List<ProjectDataMap> findAllStartIdZero() {
 
-        //long id, String name, String type, String startDates, String endDates, 
-        //String client, String employees, String description, String technologies
         List<ProjectDataMap> cfp = new ArrayList();
         for (Project p : repository.findAll(Sort.by(Sort.Direction.ASC, "id"))) {
             p.setId(p.getId() - 1);
@@ -83,7 +89,15 @@ public class ProjectService implements IProjectService {
                 technologies.add(t.getTechnology());
             }
             
-            cfp.add(new ProjectDataMap(p.getId(), p.getName(), p.getType(), p.getProjecttime().get(0).getStartDates(), p.getProjecttime().get(0).getEndDates(), customers, employees, p.getDescription(), technologies));
+            cfp.add(new ProjectDataMap(p.getId(), 
+                    p.getName(), 
+                    p.getType(), 
+                    p.getProjecttime().get(0).getStartDates(), 
+                    p.getProjecttime().get(0).getEndDates(), 
+                    customers, 
+                    employees, 
+                    p.getDescription(), 
+                    technologies));
         }
         return cfp;
     }
@@ -91,8 +105,6 @@ public class ProjectService implements IProjectService {
     @Override
     public List<ProjectEmployeeMap> findAllProjectsByEmployee(long id) {
 
-        //long id, String name, String type, String startDates, String endDates, 
-        //String client, String employees, String description, String technologies
         List<ProjectEmployeeMap> cfp = new ArrayList();
         for (Project p : repository.findAll(Sort.by(Sort.Direction.ASC, "id"))) {
             
@@ -102,15 +114,15 @@ public class ProjectService implements IProjectService {
                     p.setId(p.getId() - 1);
                     
                     List<String> customers = new ArrayList();
-
-                    //Loops for putting objects into one array, instead of multiple arrays in json later
-                    for (Customer c : p.getCustomers()) {
-                        customers.add(c.getName());
-                    }
                     
-                    if (customers.isEmpty()) {
+                    if (p.getCustomers().isEmpty())
                         customers.add("Other");
-                    }
+                    else
+                    {
+                        //Loops for putting objects into one array, instead of multiple arrays in json later
+                        for (Customer c : p.getCustomers()) 
+                            customers.add(c.getName());
+                    }      
                     
                     cfp.add(new ProjectEmployeeMap(
                             p.getId(),

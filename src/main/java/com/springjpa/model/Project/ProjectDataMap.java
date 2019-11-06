@@ -2,10 +2,6 @@ package com.springjpa.model.Project;
 
 import java.util.List;
 
-/**
- *
- * @author work
- */
 public class ProjectDataMap {
     
     private long id;

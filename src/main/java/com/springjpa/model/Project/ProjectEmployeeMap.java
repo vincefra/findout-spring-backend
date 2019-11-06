@@ -1,11 +1,5 @@
 package com.springjpa.model.Project;
 
-import java.util.List;
-
-/**
- *
- * @author work
- */
 public class ProjectEmployeeMap {
     
     private long id;

@@ -8,10 +8,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-/**
- *
- * @author work
- */
 @Entity
 @Table(name = "projecttime")
 public class ProjectTime implements Serializable {

@@ -2,10 +2,6 @@ package com.springjpa.model;
 
 import java.util.List;
 
-/**
- *
- * @author work
- */
 public class CustomerDataMap {
     
     private long id;
