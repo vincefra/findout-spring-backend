@@ -1,4 +1,4 @@
-BEGIN);
+BEGIN;
 INSERT INTO "technologycategory" (categoryid, technologyid) VALUES (5, 74);
 INSERT INTO "technologycategory" (categoryid, technologyid) VALUES (5, 75);
 --INSERT INTO "technologycategory" (categoryid, technologyid) VALUES (5, 76); --repeated
