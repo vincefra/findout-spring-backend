@@ -25,7 +25,6 @@ Try running this command:
 `docker-compose down`
 
 ## Accessing the application
-`docker-compose up --build`
 
 The backend server is available at http://localhost:7878/api/
 
@@ -40,4 +39,13 @@ DB console is available at http://localhost:9081/ with default settings:
 - password: password
 - Database: postgres
 
- 
+## Settings for the application
+- src/main/resources
+
+--/application.yaml
+
+Here are the settings for database and flyway. If set to true, flyway till run all the scripts and make the databas ready with data.
+
+--/migration
+
+Here are the scriptfiles for database.
