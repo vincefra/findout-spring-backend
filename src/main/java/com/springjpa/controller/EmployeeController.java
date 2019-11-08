@@ -38,29 +38,4 @@ public class EmployeeController {
     public String ping() {
         return "OK";
     }
-    
-
-    /*
-    @PostMapping("/save")
-    public String process() {
-        // save a single Employee
-        repository.save(new Employee("Jack", "Smith", 1919));
-
-        // save a list of Customers
-        repository.save(Arrays.asList(new Employee("Adam", "Johnson", 1919), new Employee("Kim", "Smith", 1919),
-                new Employee("David", "Williams", 1919), new Employee("Peter", "Davis", 1919)));
-
-        return "Done";
-    }
-
-    @RequestMapping("/findbylastname")
-    public String fetchDataByLastName(@RequestParam("lastname") String lastname) {
-        String result = "";
-
-        for (Employee cust : repository.findByLastname(lastname)) {
-            result += cust.toString() + "<br>";
-        }
-
-        return result;
-    }*/
 }

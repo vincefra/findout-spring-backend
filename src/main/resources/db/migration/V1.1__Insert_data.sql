@@ -2922,6 +2922,8 @@ INSERT INTO "employeetechnology" VALUES (1678, 2, 35);
 INSERT INTO "employeetechnology" VALUES (1679, 48, 35);
 INSERT INTO "employeetechnology" VALUES (1680, 47, 35);
 INSERT INTO "employeetechnology" VALUES (1681, 19, 35);
+INSERT INTO "employeetechnology" VALUES (1682, 26, 224);
+INSERT INTO "employeetechnology" VALUES (1683, 26, 114);
 COMMIT;
 
 
